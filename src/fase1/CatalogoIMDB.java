@@ -37,33 +37,28 @@ public class CatalogoIMDB {
 				String anno = "";
 				String votos = "";
 				lines = entrada.nextLine();
-				String linesSeparated[] = lines.split(" "); //info de las peliculas separadas por cada espacio
-				for(int i = 0; i < linesSeparated.length; i++) {
+				String linesSeparated[] = lines.split("\t"); //info de las peliculas separadas por cada tab
+				for(int i = 0; i < linesSeparated.length - 1; i++) {
 					if(linesSeparated[i].contains("a") || linesSeparated[i].contains("e") || linesSeparated[i].contains("-")) {
-						if(!linesSeparated[i].contains("1") || !linesSeparated[i].contains("7") || !linesSeparated[i].contains("9") ) {
-							res += linesSeparated[i] + " ";
-							System.out.println(res);
-							System.out.println(i);
-						}
+						res += linesSeparated[i] + " ";					
 					}
 					else {
 						finalNombre = i;
 						break;
 					}
 				}
-				if(linesSeparated[finalNombre].contains("1")) anno = linesSeparated[finalNombre];
-				System.out.println(anno);
-				if(linesSeparated[finalNombre+1].contains(".")) floating = linesSeparated[finalNombre+1];
-				System.out.println(floating);
-				if(linesSeparated[finalNombre+2].contains("1")) votos = linesSeparated[finalNombre+2];
-				System.out.println(votos);
+				anno = linesSeparated[finalNombre];
+				floating = linesSeparated[finalNombre+1];
+				votos = linesSeparated[finalNombre+2];
+
 				catalogoPeliculas.anadirPelicula(new Pelicula(res, Integer.parseInt(anno), Float.parseFloat(floating), Integer.parseInt(votos)));
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	} // Ver ayuda en siguiente apartado
+	} 
+	// Ver ayuda en siguiente apartado
 	/**
 	* Carga los int�pretes del cat�ogo desde el fichero indicado
 	* POST: se han cargado los int�pretes y se han calculado sus ratings

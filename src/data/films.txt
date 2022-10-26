@@ -1,10 +1,3 @@
-Gasherbrum - Der leuchtende Berg 1985 7.5 910
-Gashileul samkin jangmi	1979 6.3 7
-Gasht-e ershad 2012 5.5 3327
-Gaslicht 1962 -1 -1
-Gaslight 2017 5.8 7
-Gaslight Follies 1945 4.4 32
-Gaslight Theatre 1965 -1 -1
-Gasline 2001 6.4 55
-Gasman 2010 -1 -1
-Gasmask 2014 7.2 6
+Gasherbrum	-	Der	leuchtende	Berg	1985	7.5	910
+Gashileul	samkin	jangmi	1979	6.3	7
+Gasht-e ershad	2012	5.5	3327
