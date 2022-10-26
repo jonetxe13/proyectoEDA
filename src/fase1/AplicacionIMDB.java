@@ -1,6 +1,7 @@
 package fase1;
 
 
+import java.nio.file.Path;
 import java.util.Scanner;
 
 
@@ -13,7 +14,7 @@ public class AplicacionIMDB {
 		
 	    //TO DO: Cargar pelculas	
 		
-		catalogo.cargarPeliculas("/data/films.txt");
+		catalogo.cargarPeliculas(Path.of("src/data").toString() + "/films.txt");
 		//catalogo.imprimirInfoPelicula("Gaslicht");
 
 	    //TO DO Cargar intrpretes

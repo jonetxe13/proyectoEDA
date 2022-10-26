@@ -31,20 +31,33 @@ public class CatalogoIMDB {
 			Scanner entrada = new Scanner(new FileReader(nomF));
 			String lines;
 			while(entrada.hasNext()) {
-				String res = null;
+				String res = "";
 				int finalNombre = 0; //donde ya el tipo no es string
+				String floating = "";
+				String anno = "";
+				String votos = "";
 				lines = entrada.nextLine();
 				String linesSeparated[] = lines.split(" "); //info de las peliculas separadas por cada espacio
 				for(int i = 0; i < linesSeparated.length; i++) {
-					if(linesSeparated[i].getClass().equals("String")) {
-						res += linesSeparated[i] + " ";
+					if(linesSeparated[i].contains("a") || linesSeparated[i].contains("e") || linesSeparated[i].contains("-")) {
+						if(!linesSeparated[i].contains("1") || !linesSeparated[i].contains("7") || !linesSeparated[i].contains("9") ) {
+							res += linesSeparated[i] + " ";
+							System.out.println(res);
+							System.out.println(i);
+						}
 					}
 					else {
 						finalNombre = i;
 						break;
 					}
 				}
-				catalogoPeliculas.anadirPelicula(new Pelicula(res, Integer.parseInt(linesSeparated[finalNombre]), Float.parseFloat(linesSeparated[finalNombre+1]), Integer.parseInt(linesSeparated[finalNombre+2])));
+				if(linesSeparated[finalNombre].contains("1")) anno = linesSeparated[finalNombre];
+				System.out.println(anno);
+				if(linesSeparated[finalNombre+1].contains(".")) floating = linesSeparated[finalNombre+1];
+				System.out.println(floating);
+				if(linesSeparated[finalNombre+2].contains("1")) votos = linesSeparated[finalNombre+2];
+				System.out.println(votos);
+				catalogoPeliculas.anadirPelicula(new Pelicula(res, Integer.parseInt(anno), Float.parseFloat(floating), Integer.parseInt(votos)));
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
