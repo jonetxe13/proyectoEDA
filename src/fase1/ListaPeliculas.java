@@ -7,8 +7,11 @@ import java.util.ArrayList;
  *
  */
 public class ListaPeliculas {
-	private ArrayList<Pelicula> listaPeliculas = new ArrayList<Pelicula>();
+	private ArrayList<Pelicula> listaPeliculas;
 	
+	public ListaPeliculas() {
+		listaPeliculas = new ArrayList<Pelicula>();
+	}
 	/**
 	* A�de una pel�ula a la lista
 	* @param pel Pel�ula a a�dir
@@ -32,10 +35,11 @@ public class ListaPeliculas {
 	* @return la Pel�ula (si est�en la lista), null en caso contrario
 	*/
 	public Pelicula buscarPelicula(String titulo) {
+		Pelicula res = null;
 		for(Pelicula pelic: listaPeliculas) {
-			if(pelic.getTitulo() == titulo) return pelic;
+			if(pelic.getTitulo().equals(titulo)) res = pelic;
 		}
-		return null;
+		return res;
 	}
 
 }

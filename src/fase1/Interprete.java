@@ -7,14 +7,17 @@ public class Interprete{
 	private float rating;
 	private float votos;
 	
-	public Interprete(String name, Pelicula pelicula) {
+	public Interprete(String name) {
 		this.name = name;
-		listaPeliculas.anadirPelicula(pelicula);
+		listaPeliculas = new ListaPeliculas();
 	}
 	
 	public String getName() { return this.name; }
 	public float getRating() { return this.rating; }
 	public ListaPeliculas getListaPeliculas() { return this.listaPeliculas; }
+	
+	public void setRating( float rating ) { this.rating = rating; }
+	public void setVotos(float votos ) { this.votos = votos; }
 	/**
 	* Calcula y asigna el rating del int�prete en base al rating de sus pel�ulas
 	*/

@@ -2,17 +2,16 @@ package fase1;
 
 
 public class Pelicula {
-	private ListaInterpretes listaInterPel = new ListaInterpretes();
+	private ListaInterpretes listaInterPel;
 	private String titulo;
 	private int anno;
 	private float rating;
 	private float votos;
 	
-	public Pelicula(String titulo, int anno, float rating, int votos) {
-		this.anno = anno;
+	public Pelicula(String titulo) {
 		this.titulo = titulo;
-		this.rating = rating;
-		this.votos = votos;
+
+		listaInterPel = new ListaInterpretes();
 	}
 	
 	public String getTitulo() { return this.titulo; }
@@ -20,6 +19,10 @@ public class Pelicula {
 	public float getRating() { return this.rating; }
 	public float getVotos() { return this.votos; }
 	public ListaInterpretes getListaInterpretes() { return listaInterPel; }
+	
+	public void setAnno(int anno) { this.anno = anno; }
+	public void setRating(float rating) { this.rating = rating; }
+	public void setVotos(int votos) { this.votos = votos; }
 	/**
 	* A�de un int�prete a la pel�ula
 	* @param inter Int�prete a a�dir

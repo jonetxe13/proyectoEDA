@@ -6,11 +6,12 @@ import java.util.Scanner;
 
 public class CatalogoIMDB {
 	private static CatalogoIMDB singletonONo;
-	private ListaPeliculas catalogoPeliculas = new ListaPeliculas();
-	private ListaInterpretes catalogoInterpretes = new ListaInterpretes();
+	private ListaPeliculas catalogoPeliculas;
+	private ListaInterpretes catalogoInterpretes;
 	
 	public CatalogoIMDB() {
-		
+		catalogoPeliculas = new ListaPeliculas();
+		catalogoInterpretes = new ListaInterpretes();
 	}
 	public static CatalogoIMDB getSingletonInstance() {
 		if(singletonONo == null) {
@@ -47,11 +48,13 @@ public class CatalogoIMDB {
 						break;
 					}
 				}
-				anno = linesSeparated[finalNombre];
-				floating = linesSeparated[finalNombre+1];
-				votos = linesSeparated[finalNombre+2];
+				Pelicula pelic = new Pelicula(res);
+				
+				pelic.setAnno(Integer.parseInt(linesSeparated[finalNombre]));
+				pelic.setRating(Float.parseFloat(linesSeparated[finalNombre + 1]));
+				pelic.setAnno(Integer.parseInt(linesSeparated[finalNombre + 2]));
 
-				catalogoPeliculas.anadirPelicula(new Pelicula(res, Integer.parseInt(anno), Float.parseFloat(floating), Integer.parseInt(votos)));
+				catalogoPeliculas.anadirPelicula(pelic);
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -66,11 +69,24 @@ public class CatalogoIMDB {
 	*/
 	public void cargarInterpretes(String nomF) {
 		try {
+			
 			Scanner entrada = new Scanner(new FileReader(nomF));
 			String lines;
 			while(entrada.hasNext()) {
+				String res = "";
+				int finalNombre = 0; //donde ya el tipo no es string
+
 				lines = entrada.nextLine();
+				String linesSeparated[] = lines.split("->"); //info de las peliculas separadas por cada tab
+				Interprete inter = new Interprete( linesSeparated[0] );
+				
+				String linesSeparated2[] = linesSeparated[1].split("\\|\\|");
+				for( String titulo: linesSeparated2 ) {
+					inter.anadirPelicula(new Pelicula(titulo));
+				}
+				catalogoInterpretes.anadirInterprete(inter);
 			}
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,6 +98,7 @@ public class CatalogoIMDB {
 	*/
 	public void imprimirInfoPelicula(String titulo) {
 		Pelicula pelic = catalogoPeliculas.buscarPelicula(titulo);
+		System.out.println("Titulo: " + pelic.getTitulo());
 		System.out.println("Numero de interpretes en la pelicula: " + pelic.numInterpretes());
 		System.out.println("\nInterpretes: " + pelic.Interpretes());
 	}
@@ -103,11 +120,11 @@ public class CatalogoIMDB {
 	* @param voto Valor del voto
 	*/
 	public void anadirVoto(String titulo, float voto) {
-		Pelicula pelic = catalogoPeliculas.buscarPelicula(titulo);
-		pelic.anadirVoto(voto);
+		catalogoPeliculas.buscarPelicula(titulo).anadirVoto(voto);;
+		
 	}
 	
-	public ListaPeliculas getMiCatalogo() {
+	public ListaPeliculas getMiCatalogoPeliculas() {
 		return catalogoPeliculas;
 	}
 }

@@ -6,7 +6,7 @@ public class ListaInterpretes{
 	private ArrayList<Interprete> listaInterpretes;
 	
 	public ListaInterpretes() {
-		
+		listaInterpretes = new ArrayList<Interprete>();
 	}
 	/**
 	* A�de un int�prete a la lista

@@ -1,6 +1,7 @@
 package fase1;
 
 
+import java.awt.event.InputEvent;
 import java.nio.file.Path;
 import java.util.Scanner;
 
@@ -15,9 +16,10 @@ public class AplicacionIMDB {
 	    //TO DO: Cargar pelculas	
 		
 		catalogo.cargarPeliculas(Path.of("src/data").toString() + "/films.txt");
-		//catalogo.imprimirInfoPelicula("Gaslicht");
+
 
 	    //TO DO Cargar intrpretes
+		catalogo.cargarInterpretes(Path.of("src/data").toString() + "/cast.txt");
 	
 		
 		//Men
@@ -28,20 +30,30 @@ public class AplicacionIMDB {
 			System.out.println("Escoja una opcion:");
 			System.out.println("1. Mostrar informacion de pelicula");
 			System.out.println("2. Mostrar informacion de interprete");
-			System.out.println("3. Anadir voto a pelocula");
+			System.out.println("3. Anadir voto a pelicula");
 
 			System.out.println("0. Salir");
 			opcion = Integer.parseInt(sc.nextLine());
 			switch(opcion) {
 			   case 1:
 				    //TO DO
-				   	Scanner titulo = new Scanner(System.in);
+				    System.out.println("Introduce el titulo de la pelicula a buscar: ");
+				   	String titulo = sc.nextLine();
 				
-					for(Pelicula pelicula: catalogo.getMiCatalogo().getListaPeliculas()) {
-						if(pelicula.getTitulo().equals(titulo.nextLine())) catalogo.imprimirInfoPelicula(pelicula.getTitulo());
-					}
+					catalogo.imprimirInfoPelicula(titulo);
 			        break;
-	              // TO DO
+			   case 2:
+				   System.out.println("Introduce el nombre del interprete a buscar: ");
+				   String nombre = sc.nextLine();
+				   
+				   catalogo.imprimirInfoInterprete(nombre);
+			   case 3: 
+				   System.out.println("Introduce el voto que quieras annadir: ");
+				   int voto = sc.nextInt();
+				   System.out.println("Introduce el titulo de la pelicula a la que lo quieras annadir: ");
+				   String nomPelicula = sc.nextLine();
+				   
+				   catalogo.anadirVoto(nomPelicula, voto);
 			}
 		}
 		sc.close();
