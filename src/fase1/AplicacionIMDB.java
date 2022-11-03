@@ -17,7 +17,6 @@ public class AplicacionIMDB {
 		
 		catalogo.cargarPeliculas(Path.of("src/data").toString() + "/films.txt");
 
-
 	    //TO DO Cargar intrpretes
 		catalogo.cargarInterpretes(Path.of("src/data").toString() + "/cast.txt");
 	
@@ -31,6 +30,7 @@ public class AplicacionIMDB {
 			System.out.println("1. Mostrar informacion de pelicula");
 			System.out.println("2. Mostrar informacion de interprete");
 			System.out.println("3. Anadir voto a pelicula");
+			System.out.println("4. Eliminar pelicula");
 
 			System.out.println("0. Salir");
 			opcion = Integer.parseInt(sc.nextLine());
@@ -54,7 +54,12 @@ public class AplicacionIMDB {
 				   String nomPelicula = sc.nextLine();
 				   
 				   catalogo.anadirVoto(nomPelicula, voto);
+				   
+				   
+			   case 0:
+				   System.out.println("Cerrando... ");
 			}
+			
 		}
 		sc.close();
 		
