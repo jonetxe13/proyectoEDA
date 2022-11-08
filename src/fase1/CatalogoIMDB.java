@@ -48,11 +48,11 @@ public class CatalogoIMDB {
 						break;
 					}
 				}
-				Pelicula pelic = new Pelicula(res);
+				Pelicula pelic = new Pelicula(linesSeparated[0]);
 				
-				pelic.setAnno(Integer.parseInt(linesSeparated[finalNombre]));
-				pelic.setRating(Float.parseFloat(linesSeparated[finalNombre + 1]));
-				pelic.setAnno(Integer.parseInt(linesSeparated[finalNombre + 2]));
+				pelic.setAnno(Integer.parseInt(linesSeparated[1]));
+				pelic.setRating(Float.parseFloat(linesSeparated[2]));
+				pelic.setAnno(Integer.parseInt(linesSeparated[3]));
 
 				catalogoPeliculas.anadirPelicula(pelic);
 			}
