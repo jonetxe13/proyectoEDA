@@ -3,20 +3,28 @@ package fase1;
 import java.util.ArrayList;
 
 public class ListaInterpretes{
-	private ArrayList<Interprete> listaInterpretes;
+	private ArrayList<Interprete> lista;
 	
 	public ListaInterpretes() {
-		listaInterpretes = new ArrayList<Interprete>();
+		lista= new ArrayList<Interprete>();
 	}
 	/**
 	* A�de un int�prete a la lista
 	* @param inter Int�prete a a�dir
 	*/
-	public void anadirInterprete(Interprete inter) {
-		listaInterpretes.add(inter);
+	public Interprete getInterprete(int index) {
+		return lista.get(index);
 	}
-	public ArrayList<Interprete> getListaInterprete(){
-		return listaInterpretes;
+
+	public ArrayList<Interprete> getlista(){
+		return lista;
+	}
+
+	public void anadirInterprete(Interprete inter) throws InstanceAlreadyExistsException {
+		if (buscarInterprete(inter.getNombre())==null) {
+			lista.add(inter);
+		}
+		else {throw new InstanceAlreadyExistsException();}
 	}
 	/**
 	* Busca un int�prete en la lista y lo devuelve
@@ -24,9 +32,13 @@ public class ListaInterpretes{
 	* @return el Interprete (si est�en la lista), null en caso contrario
 	*/
 	public Interprete buscarInterprete(String nombre) {
-		for(Interprete inter: listaInterpretes) {
-			if(inter.getName() == nombre) return inter;
+		for(Interprete inter: lista) {
+			if(inter.getName().equals(nombre)) return inter;
 		}
 		return null;
 	}
+
+  public int tamanio(){
+    return lista.size();
+  }
 }
