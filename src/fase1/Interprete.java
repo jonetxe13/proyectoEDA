@@ -1,5 +1,6 @@
 package fase1;
 
+import javax.management.InstanceAlreadyExistsException;
 
 public class Interprete{
 	private String name;
@@ -25,9 +26,9 @@ public class Interprete{
 	public void calcularRating() {
 		int cont = 0;
 		float rating = 0;
-		for(int i = 0; i < peliculas.getListaPeliculas().size(); i++) {
-			if(listaPeliculas.getListaPeliculas().get(i).getInterpretes().equals(getNombre())){
-				rating = rating + listaPeliculas.getListaPeliculas().get(i).getRating();
+		for(int i = 0; i < listaPeliculas.getLista().size(); i++) {
+			if(listaPeliculas.getLista().get(i).getListaInterpretes().equals(getName())){
+				rating = rating + listaPeliculas.getLista().get(i).getRating();
 				cont++;
 			}
 		}

@@ -2,6 +2,8 @@ package fase1;
 
 import java.util.ArrayList;
 
+import javax.management.InstanceAlreadyExistsException;
+
 public class ListaInterpretes{
 	private ArrayList<Interprete> lista;
 	
@@ -21,7 +23,7 @@ public class ListaInterpretes{
 	}
 
 	public void anadirInterprete(Interprete inter) throws InstanceAlreadyExistsException {
-		if (buscarInterprete(inter.getNombre())==null) {
+		if (buscarInterprete(inter.getName()).equals(null)) {
 			lista.add(inter);
 		}
 		else {throw new InstanceAlreadyExistsException();}

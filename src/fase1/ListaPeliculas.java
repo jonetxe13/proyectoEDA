@@ -2,14 +2,16 @@ package fase1;
 
 import java.util.ArrayList;
 
+import javax.management.InstanceAlreadyExistsException;
+
 /**
  * @author jonetxe13
  *
  */
-public class lista{
+public class ListaPeliculas{
 	private ArrayList<Pelicula> lista;
 	
-	public lista() {
+	public ListaPeliculas() {
 		lista= new ArrayList<Pelicula>();
 	}
 	/**
@@ -17,7 +19,7 @@ public class lista{
 	* @param pel Pel�ula a a�dir
 	*/
 	public void anadirPelicula(Pelicula pel) throws InstanceAlreadyExistsException {
-		if (buscarPelicula(pel.getTitulo())==null) {
+		if (buscarPelicula(pel.getTitulo()) == null) {
 			lista.add(pel);
 		}
 		else {throw new InstanceAlreadyExistsException();}
@@ -41,13 +43,18 @@ public class lista{
 	* @return la Pel�ula (si est�en la lista), null en caso contrario
 	*/
 	public Pelicula buscarPelicula(String titulo) {
+		Pelicula res = null;
 		for(Pelicula pelic: lista) {
-			if(pelic.getTitulo().equals(titulo)) return pelic;
+			if(pelic.getTitulo().equals(titulo)) res = pelic;
 		}
-		return null;
+		return res;
 	}
 
 	public Pelicula getPelicula(int index) {
 		return lista.get(index);
+	}
+	
+	public int tamanio() {
+		return lista.size();
 	}
 }

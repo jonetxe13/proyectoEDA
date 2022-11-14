@@ -5,20 +5,20 @@ import java.awt.event.InputEvent;
 import java.nio.file.Path;
 import java.util.Scanner;
 
+import javax.management.InstanceAlreadyExistsException;
+
 
 public class AplicacionIMDB {
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws InstanceAlreadyExistsException{
 		CatalogoIMDB catalogo = new CatalogoIMDB();
 
           //TO DO: ...
 		
 	    //TO DO: Cargar pelculas	
+		catalogo.cargarPeliculas(Path.of("src/data") + "/films.txt");
 		
-		catalogo.cargarPeliculas(Path.of("src/data").toString() + "/films.txt");
-
-	    //TO DO Cargar intrpretes
-		catalogo.cargarInterpretes(Path.of("src/data").toString() + "/cast.txt");
+		catalogo.cargarInterpretes(Path.of("src/data") + "/cast.txt");
 	
 		
 		//Men
@@ -36,26 +36,30 @@ public class AplicacionIMDB {
 			opcion = Integer.parseInt(sc.nextLine());
 			switch(opcion) {
 			   case 1:
-				    //TO DO
 				    System.out.println("Introduce el titulo de la pelicula a buscar: ");
 				   	String titulo = sc.nextLine();
-				
 					catalogo.imprimirInfoPelicula(titulo);
-			        break;
+					break;
+
 			   case 2:
 				   System.out.println("Introduce el nombre del interprete a buscar: ");
 				   String nombre = sc.nextLine();
-				   
 				   catalogo.imprimirInfoInterprete(nombre);
+				   break;
+
 			   case 3: 
-				   System.out.println("Introduce el voto que quieras annadir: ");
-				   int voto = sc.nextInt();
-				   System.out.println("Introduce el titulo de la pelicula a la que lo quieras annadir: ");
-				   String nomPelicula = sc.nextLine();
-				   
-				   catalogo.anadirVoto(nomPelicula, voto);
-				   
-				   
+				   System.out.println("Introduce el titulo de la pelicula a la cual le quieras annadir el voto: \n");
+				   String peli = sc.nextLine();
+				   if(catalogo.getCatalogoP().buscarPelicula(peli) != null){
+				      System.out.println("Introduce el titulo de la pelicula a la que lo quieras annadir: ");
+				      float voto = sc.nextFloat();
+				      catalogo.anadirVoto(peli, voto);
+				   	}
+				   else{
+					   System.out.println("La pelicula no se encuentra en el catalogo");
+				   }
+				   break;
+
 			   case 0:
 				   System.out.println("Cerrando... ");
 			}

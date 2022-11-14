@@ -1,5 +1,6 @@
 package fase1;
 
+import javax.management.InstanceAlreadyExistsException;
 
 public class Pelicula {
 	private ListaInterpretes listaInterPel;
@@ -15,7 +16,7 @@ public class Pelicula {
 		rating=pRating;
 		votos=pVotos;
 		numInterpretes=0;
-		listaInterpretes = new ListaInterpretes();
+		listaInterPel = new ListaInterpretes();
 	}
 	
 	public String getTitulo() { return this.titulo; }

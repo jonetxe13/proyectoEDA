@@ -3,6 +3,9 @@ package fase1;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+
+import javax.management.InstanceAlreadyExistsException;
 
 public class CatalogoIMDB {
 	private static CatalogoIMDB singletonONo;
@@ -13,6 +16,7 @@ public class CatalogoIMDB {
 		catalogoPeliculas = new ListaPeliculas();
 		catalogoInterpretes = new ListaInterpretes();
 	}
+
 	public static CatalogoIMDB getSingletonInstance() {
 		if(singletonONo == null) {
 			singletonONo = new CatalogoIMDB();
@@ -23,72 +27,61 @@ public class CatalogoIMDB {
 		return singletonONo;
 	}
 	
+	public ListaPeliculas getCatalogoP() {
+		return catalogoPeliculas;
+	}
+	
+  public ListaInterpretes getCatalogoI() {
+		return catalogoInterpretes;
+	}
 	/**
 	* Carga las pel�ulas del cat�ogo desde el fichero indicado
 	* @param nomF Nombre del fichero que contiene las pel�ulas
 	*/
-	public void cargarPeliculas(String nomF) {
+	// Ver ayuda en siguiente apartado
+
+	public void cargarPeliculas(String nomF) throws InstanceAlreadyExistsException {
 		try {
 			Scanner entrada = new Scanner(new FileReader(nomF));
-			String lines;
-			while(entrada.hasNext()) {
-				String res = "";
-				int finalNombre = 0; //donde ya el tipo no es string
-				String floating = "";
-				String anno = "";
-				String votos = "";
-				lines = entrada.nextLine();
-				String linesSeparated[] = lines.split("\t"); //info de las peliculas separadas por cada tab
-				for(int i = 0; i < linesSeparated.length - 1; i++) {
-					if(linesSeparated[i].contains("a") || linesSeparated[i].contains("e") || linesSeparated[i].contains("-")) {
-						res += linesSeparated[i] + " ";					
-					}
-					else {
-						finalNombre = i;
-						break;
-					}
-				}
-				Pelicula pelic = new Pelicula(linesSeparated[0]);
-				
-				pelic.setAnno(Integer.parseInt(linesSeparated[1]));
-				pelic.setRating(Float.parseFloat(linesSeparated[2]));
-				pelic.setAnno(Integer.parseInt(linesSeparated[3]));
-
-				catalogoPeliculas.anadirPelicula(pelic);
+			String linea;
+			while (entrada.hasNext()) {
+				linea=entrada.nextLine();
+				String[] arrayPuntos = linea.split("\t");
+				Pelicula peli = new Pelicula(arrayPuntos[0], Integer.parseInt(arrayPuntos[1]),Float.parseFloat(arrayPuntos[2]),Integer.parseInt(arrayPuntos[3]));
+				catalogoPeliculas.anadirPelicula(peli);
 			}
+			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	} 
-	// Ver ayuda en siguiente apartado
+		
+	}
 	/**
 	* Carga los int�pretes del cat�ogo desde el fichero indicado
 	* POST: se han cargado los int�pretes y se han calculado sus ratings
 	* @param nomF Nombre del fichero que contiene los int�pretes
 	*/
-	public void cargarInterpretes(String nomF) {
-		try {
-			
-			Scanner entrada = new Scanner(new FileReader(nomF));
-			String lines;
-			while(entrada.hasNext()) {
-				String res = "";
-				int finalNombre = 0; //donde ya el tipo no es string
 
-				lines = entrada.nextLine();
-				String linesSeparated[] = lines.split("->"); //info de las peliculas separadas por cada tab
-				Interprete inter = new Interprete( linesSeparated[0] );
-				
-				String linesSeparated2[] = linesSeparated[1].split("\\|\\|");
-				for( String titulo: linesSeparated2 ) {
-					inter.anadirPelicula(new Pelicula(titulo));
+	public void cargarInterpretes(String nomF) throws InstanceAlreadyExistsException {
+		try {
+			Scanner entrada = new Scanner(new FileReader(nomF));
+			String linea;
+			while (entrada.hasNext()) {
+				linea=entrada.nextLine();
+				String[] arrayPuntos = linea.split("->");
+				Interprete inter = new Interprete(arrayPuntos[0]);
+				//inter.anadirPelicula(getListaP().buscarPelicula(arrayPuntos[1]));
+				String separador = Pattern.quote("||");
+
+				for (String peli : arrayPuntos[1].split(separador)) {
+				 inter.anadirPelicula(getCatalogoP().buscarPelicula(peli));
+				 catalogoPeliculas.buscarPelicula(peli).anadirInterprete(inter);
 				}
+
+				inter.calcularRating();
 				catalogoInterpretes.anadirInterprete(inter);
 			}
-
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -97,10 +90,18 @@ public class CatalogoIMDB {
 	* @param titulo T�ulo de la pel�ula
 	*/
 	public void imprimirInfoPelicula(String titulo) {
-		Pelicula pelic = catalogoPeliculas.buscarPelicula(titulo);
-		System.out.println("Titulo: " + pelic.getTitulo());
-		System.out.println("Numero de interpretes en la pelicula: " + pelic.numInterpretes());
-		System.out.println("\nInterpretes: " + pelic.Interpretes());
+		String resultado="";
+		Pelicula peli = catalogoPeliculas.buscarPelicula(titulo);
+		if (peli!=null) {
+			resultado = "Titulo: " + peli.getTitulo() + "\n Anno: " + peli.getAnno() + "\n Rating: " + peli.getRating() + "\n Num. votos: " + peli.getVotos() + "\n Total de int�rpretes de la pel�cula: " + peli.getNumInterpretes();
+			for (int i = 0; i<peli.getListaInterpretes().tamanio();i++) {
+				resultado = resultado + "\n" + peli.getListaInterpretes().getlista().get(i).getName();
+			}
+			System.out.println(resultado);
+		}
+		else {
+			System.out.println("La pelicula " + titulo + " no se encuentra.");
+		}
 	}
 	/**
 	* Imprime por pantalla el nombre del int�prete, su rating y los t�ulos
@@ -108,10 +109,18 @@ public class CatalogoIMDB {
 	* @param nombre Nombre del int�prete
 	*/
 	public void imprimirInfoInterprete(String nombre) {
+		String resultado="";
 		Interprete inter = catalogoInterpretes.buscarInterprete(nombre);
-		System.out.println(inter.getName() + "\n");
-		System.out.println(inter.getRating() + "\n");
-		System.out.println(inter.getListaPeliculas().imprimirLista() + "\n");					
+		if (inter!=null) {
+			resultado = "Nombre: " + inter.getName() + "\n Rating: " + inter.getRating() + "\n Total de pel�culas del int�rprete: " + inter.getNumPeliculas();
+			for (int i = 0; i<inter.getListaPeliculas().tamanio();i++) {
+				resultado = resultado + "\n" + inter.getListaPeliculas().getLista().get(i).getTitulo();
+			}
+			System.out.println(resultado);
+		}
+		else {
+			System.out.println("El int�rprete no se encuentra.");
+		}
 	}
 	/**
 	* A�de un nuevo voto a una pel�ula
@@ -120,11 +129,13 @@ public class CatalogoIMDB {
 	* @param voto Valor del voto
 	*/
 	public void anadirVoto(String titulo, float voto) {
-		catalogoPeliculas.buscarPelicula(titulo).anadirVoto(voto);;
-		
+		if (0<=voto && voto<=10) {
+			catalogoPeliculas.buscarPelicula(titulo).anadirVoto(voto);
+			System.out.println("El nuevo rating de la pel�cula es: " + catalogoPeliculas.buscarPelicula(titulo).getRating());
+		}
+		else {
+			System.out.println("El voto no es v�lido.");
+		}
 	}
 	
-	public ListaPeliculas getMiCatalogoPeliculas() {
-		return catalogoPeliculas;
-	}
 }
