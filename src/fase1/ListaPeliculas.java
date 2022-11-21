@@ -30,7 +30,7 @@ public class ListaPeliculas{
 	}
 
 	public String imprimirLista() {
-		String res = null;
+		String res = "";
 		for(Pelicula pelic: lista) {
 			res += pelic.getTitulo() + ", ";
 		}

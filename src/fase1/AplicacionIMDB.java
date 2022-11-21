@@ -17,8 +17,8 @@ public class AplicacionIMDB {
 		
 	    //TO DO: Cargar pelculas	
 		catalogo.cargarPeliculas(Path.of("src/data") + "/films.txt");
-		
 		catalogo.cargarInterpretes(Path.of("src/data") + "/cast.txt");
+		
 	
 		
 		//Men

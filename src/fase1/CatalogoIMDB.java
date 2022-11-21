@@ -46,7 +46,7 @@ public class CatalogoIMDB {
 			String linea;
 			while (entrada.hasNext()) {
 				linea=entrada.nextLine();
-				String[] arrayPuntos = linea.split("\t");
+				String[] arrayPuntos = linea.split("	");
 				Pelicula peli = new Pelicula(arrayPuntos[0], Integer.parseInt(arrayPuntos[1]),Float.parseFloat(arrayPuntos[2]),Integer.parseInt(arrayPuntos[3]));
 				catalogoPeliculas.anadirPelicula(peli);
 			}
@@ -70,12 +70,11 @@ public class CatalogoIMDB {
 				linea=entrada.nextLine();
 				String[] arrayPuntos = linea.split("->");
 				Interprete inter = new Interprete(arrayPuntos[0]);
-				//inter.anadirPelicula(getListaP().buscarPelicula(arrayPuntos[1]));
-				String separador = Pattern.quote("||");
-
-				for (String peli : arrayPuntos[1].split(separador)) {
-				 inter.anadirPelicula(getCatalogoP().buscarPelicula(peli));
-				 catalogoPeliculas.buscarPelicula(peli).anadirInterprete(inter);
+				
+				String[] listaTitulos = arrayPuntos[1].split("\\|\\|");
+			
+				for (int i = 0; i < listaTitulos.length; i++) {
+				 inter.anadirPelicula(catalogoPeliculas.buscarPelicula(listaTitulos[i]));
 				}
 
 				inter.calcularRating();
