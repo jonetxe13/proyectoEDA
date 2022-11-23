@@ -10,8 +10,8 @@ public class Interprete{
 	
 	public Interprete(String name) {
 		this.name = name;
-    rating = -1;
-    numPeliculas = 0;
+		rating = -1;
+		numPeliculas = 0;
 		listaPeliculas = new ListaPeliculas();
 	}
 	

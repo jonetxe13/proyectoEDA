@@ -57,4 +57,8 @@ public class ListaPeliculas{
 	public int tamanio() {
 		return lista.size();
 	}
+	
+	public boolean eliminarPelicula(Pelicula pel) {
+		return false;
+	}
 }

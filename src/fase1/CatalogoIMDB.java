@@ -7,7 +7,9 @@ import java.util.regex.Pattern;
 
 import javax.management.InstanceAlreadyExistsException;
 
-public class CatalogoIMDB {
+import fase2.InterfaceInterpretes;
+
+public class CatalogoIMDB implements InterfaceInterpretes{
 	private static CatalogoIMDB singletonONo;
 	private ListaPeliculas catalogoPeliculas;
 	private ListaInterpretes catalogoInterpretes;
@@ -70,11 +72,9 @@ public class CatalogoIMDB {
 				linea=entrada.nextLine();
 				String[] arrayPuntos = linea.split("->");
 				Interprete inter = new Interprete(arrayPuntos[0]);
-				//inter.anadirPelicula(getListaP().buscarPelicula(arrayPuntos[1]));
-				String separador = Pattern.quote("||");
 
-				for (String peli : arrayPuntos[1].split(separador)) {
-				 inter.anadirPelicula(getCatalogoP().buscarPelicula(peli));
+				for (String peli : arrayPuntos[1].split("||")) {
+				 inter.anadirPelicula(catalogoPeliculas.buscarPelicula("Hola"));
 				 catalogoPeliculas.buscarPelicula(peli).anadirInterprete(inter);
 				}
 
@@ -93,7 +93,7 @@ public class CatalogoIMDB {
 		String resultado="";
 		Pelicula peli = catalogoPeliculas.buscarPelicula(titulo);
 		if (peli!=null) {
-			resultado = "Titulo: " + peli.getTitulo() + "\n Anno: " + peli.getAnno() + "\n Rating: " + peli.getRating() + "\n Num. votos: " + peli.getVotos() + "\n Total de int�rpretes de la pel�cula: " + peli.getNumInterpretes();
+			resultado = "Titulo: " + peli.getTitulo() + "\n Anno: " + peli.getAnno() + "\n Rating: " + peli.getRating() + "\n Num. votos: " + peli.getVotos() + "\n Total de interpretes de la pelicula: " + peli.getNumInterpretes();
 			for (int i = 0; i<peli.getListaInterpretes().tamanio();i++) {
 				resultado = resultado + "\n" + peli.getListaInterpretes().getlista().get(i).getName();
 			}
@@ -136,6 +136,38 @@ public class CatalogoIMDB {
 		else {
 			System.out.println("El voto no es v�lido.");
 		}
+	}
+	
+	public void setInterpretes(InterfaceInterpretes interpretes) {
+		
+	};
+
+	@Override
+	public void anadirInterprete(Interprete inter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Interprete buscarInterprete(String nom) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Interprete eliminarInterprete(String nom) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	public Pelicula eliminarPelicula(String titulo) {
+		return null;
 	}
 	
 }
