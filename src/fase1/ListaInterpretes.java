@@ -23,7 +23,7 @@ public class ListaInterpretes{
 	}
 
 	public void anadirInterprete(Interprete inter) throws InstanceAlreadyExistsException {
-		if (buscarInterprete(inter.getName()).equals(null)) {
+		if (buscarInterprete(inter.getName()) == null) {
 			lista.add(inter);
 		}
 		else {throw new InstanceAlreadyExistsException();}
