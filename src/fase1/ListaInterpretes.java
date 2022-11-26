@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import javax.management.InstanceAlreadyExistsException;
 
-public class ListaInterpretes{
+import fase2.InterfaceInterpretes;
+
+public class ListaInterpretes implements InterfaceInterpretes{
 	private ArrayList<Interprete> lista;
 	
 	public ListaInterpretes() {
@@ -22,11 +24,18 @@ public class ListaInterpretes{
 		return lista;
 	}
 
-	public void anadirInterprete(Interprete inter) throws InstanceAlreadyExistsException {
-		if (buscarInterprete(inter.getName()) == null) {
-			lista.add(inter);
+	public void anadirInterprete(Interprete inter) throws InstanceAlreadyExistsException{
+		try {
+			if(buscarInterprete(inter.getName()) == null) {
+				lista.add(inter);
+			}
+			else {
+				throw new InstanceAlreadyExistsException();
+			}
 		}
-		else {throw new InstanceAlreadyExistsException();}
+		catch( InstanceAlreadyExistsException e ) {
+			System.out.println("El interprete ya se encuentra en la lista.");
+		}
 	}
 	/**
 	* Busca un int�prete en la lista y lo devuelve
@@ -40,7 +49,18 @@ public class ListaInterpretes{
 		return null;
 	}
 
-  public int tamanio(){
-    return lista.size();
-  }
+	public int tamanio(){
+	    return lista.size();
+	}
+	
+	@Override
+	public Interprete eliminarInterprete(String nom) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

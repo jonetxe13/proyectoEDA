@@ -1,10 +1,19 @@
 package fase2;
 
 import fase1.Interprete;
+import fase2.NodoABBInterpretes;
 
-public class ABBInterpretes {
+public class ABBInterpretes<NodoABBInterpretes> implements InterfaceInterpretes {
+	
 	private NodoABBInterpretes root;
 	
+	public ABBInterpretes( Interprete info ) {
+		this.root = new NodoABBInterpretes(info);
+	}
+	
+	public boolean isEmpty() {
+		return false;
+	}
 	public void anadirInterprete(Interprete inter) {
 		
 	}
