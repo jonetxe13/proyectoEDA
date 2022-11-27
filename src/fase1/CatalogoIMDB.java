@@ -12,7 +12,7 @@ import fase2.InterfaceInterpretes;
 public class CatalogoIMDB implements InterfaceInterpretes{
 	private static CatalogoIMDB singletonONo;
 	private ListaPeliculas catalogoPeliculas;
-	private ListaInterpretes catalogoInterpretes;
+	private InterfaceInterpretes catalogoInterpretes;
 	
 	public CatalogoIMDB() {
 		catalogoPeliculas = new ListaPeliculas();
@@ -33,7 +33,7 @@ public class CatalogoIMDB implements InterfaceInterpretes{
 		return catalogoPeliculas;
 	}
 	
-  public ListaInterpretes getCatalogoI() {
+  public InterfaceInterpretes getCatalogoI() {
 		return catalogoInterpretes;
 	}
 	/**
@@ -142,7 +142,7 @@ public class CatalogoIMDB implements InterfaceInterpretes{
 	}
 	
 	public void setInterpretes(InterfaceInterpretes interpretes) {
-		
+		this.catalogoInterpretes = interpretes;
 	};
 
 	@Override

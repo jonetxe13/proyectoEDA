@@ -48,4 +48,10 @@ public class Interprete{
 			e.printStackTrace();
 		}
 	}
+	
+	public int compareTo(Interprete inter) {
+		if(this.getName().equals(inter.getName())) return 0;
+		else if(this.getName().compareTo(inter.getName()) < 0) return -1;
+		return 1;
+	}
 }
