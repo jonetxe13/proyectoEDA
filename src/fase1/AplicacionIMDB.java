@@ -27,13 +27,15 @@ public class AplicacionIMDB {
 		int opcion=-1;
 		
 		while(opcion!=0) {
+			System.out.println("----------------MENU----------------");
 			System.out.println("Escoja una opcion:");
 			System.out.println("1. Mostrar informacion de pelicula");
 			System.out.println("2. Mostrar informacion de interprete");
 			System.out.println("3. Anadir voto a pelicula");
 			System.out.println("4. Eliminar pelicula");
-
 			System.out.println("0. Salir");
+			System.out.println("-------------------------------------");
+			
 			opcion = Integer.parseInt(sc.nextLine());
 			switch(opcion) {
 			   case 1:
@@ -57,12 +59,14 @@ public class AplicacionIMDB {
 				      catalogo.anadirVoto(peli, voto);
 				   	}
 				   else{
+					   System.out.println("¡ERROR!");
 					   System.out.println("La pelicula no se encuentra en el catalogo");
 				   }
 				   break;
 
 			   case 0:
 				   System.out.println("Cerrando... ");
+				   break;
 			}
 			
 		}
