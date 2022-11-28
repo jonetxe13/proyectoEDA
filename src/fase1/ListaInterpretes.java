@@ -12,10 +12,7 @@ public class ListaInterpretes implements InterfaceInterpretes{
 	public ListaInterpretes() {
 		lista= new ArrayList<Interprete>();
 	}
-	/**
-	* A�de un int�prete a la lista
-	* @param inter Int�prete a a�dir
-	*/
+
 	public Interprete getInterprete(int index) {
 		return lista.get(index);
 	}
@@ -24,7 +21,7 @@ public class ListaInterpretes implements InterfaceInterpretes{
 		return lista;
 	}
 
-	public void anadirInterprete(Interprete inter) throws InstanceAlreadyExistsException{
+	public void annadirInterprete(Interprete inter) throws InstanceAlreadyExistsException{
 		try {
 			if(buscarInterprete(inter.getName()) == null) {
 				lista.add(inter);

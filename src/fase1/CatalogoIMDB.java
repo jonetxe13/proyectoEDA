@@ -82,7 +82,7 @@ public class CatalogoIMDB implements InterfaceInterpretes{
 				}
 
 				inter.calcularRating();
-				catalogoInterpretes.anadirInterprete(inter);
+				catalogoInterpretes.annadirInterprete(inter);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -146,7 +146,7 @@ public class CatalogoIMDB implements InterfaceInterpretes{
 	};
 
 	@Override
-	public void anadirInterprete(Interprete inter) {
+	public void annadirInterprete(Interprete inter) {
 		// TODO Auto-generated method stub
 		
 	}
