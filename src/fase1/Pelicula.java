@@ -32,7 +32,7 @@ public class Pelicula {
 	*/
 	public void anadirInterprete(Interprete inter) {	
 		try {
-			listaInterPel.anadirInterprete(inter);
+			listaInterPel.annadirInterprete(inter);
 			numInterpretes++;
 		} catch (InstanceAlreadyExistsException e) {
 			// TODO Auto-generated catch block
