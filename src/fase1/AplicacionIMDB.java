@@ -27,14 +27,14 @@ public class AplicacionIMDB {
 		int opcion=-1;
 		
 		while(opcion!=0) {
-			System.out.println("----------------MENU----------------");
-			System.out.println("Escoja una opcion:");
-			System.out.println("1. Mostrar informacion de pelicula");
-			System.out.println("2. Mostrar informacion de interprete");
-			System.out.println("3. Anadir voto a pelicula");
-			System.out.println("4. Eliminar pelicula");
-			System.out.println("0. Salir");
-			System.out.println("-------------------------------------");
+			System.out.println("------------------MENU------------------");
+			System.out.println(" Escoja una opcion:");
+			System.out.println("  1. Mostrar informacion de pelicula");
+			System.out.println("  2. Mostrar informacion de interprete");
+			System.out.println("  3. Anadir voto a pelicula");
+			System.out.println("  4. Eliminar pelicula");
+			System.out.println("  0. Salir");
+			System.out.println("----------------------------------------");
 			
 			opcion = Integer.parseInt(sc.nextLine());
 			switch(opcion) {
@@ -51,10 +51,10 @@ public class AplicacionIMDB {
 				   break;
 
 			   case 3: 
-				   System.out.println("Introduce el titulo de la pelicula a la cual le quieras annadir el voto: \n");
-				   String peli = sc.nextLine();
+				  System.out.println("Introduce el titulo de la pelicula a la cual le quieras annadir el voto: \n"); 
+				  String peli = sc.nextLine();
 				   if(catalogo.getCatalogoP().buscarPelicula(peli) != null){
-				      System.out.println("Introduce el titulo de la pelicula a la que lo quieras annadir: ");
+				      System.out.println("Introduce el numero del voto que quieras annadir: ");
 				      float voto = sc.nextFloat();
 				      catalogo.anadirVoto(peli, voto);
 				   	}
