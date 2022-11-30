@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 import javax.management.InstanceAlreadyExistsException;
 
+import fase2.ABBInterpretes;
+
 
 public class AplicacionIMDB {
 	
@@ -20,7 +22,15 @@ public class AplicacionIMDB {
 
 		catalogo.cargarInterpretes(Path.of("src/data") + "/cast.txt");
 		
-	
+		ABBInterpretes arbol = new ABBInterpretes(catalogo.getCatalogoI().buscarInterprete("Runco, David"));
+		System.out.println(arbol);
+		System.out.println(catalogo.getCatalogoI().buscarInterprete("Alfonso, Martin").getName());
+		arbol.annadirInterprete(catalogo.getCatalogoI().buscarInterprete("Alfonso, Martin"));
+		arbol.buscarInterprete("Runco, David");
+		System.out.println(arbol.buscarInterprete("Runco, David").getName());
+		System.out.println(arbol.buscarInterprete("Alfonso, Martin").getName());
+		arbol.eliminarInterprete("Runco, David");
+		System.out.println(arbol.buscarInterprete("Runco, David"));
 		
 		//Men
 		Scanner sc = new Scanner(System.in);

@@ -14,15 +14,15 @@ public class NodoABBInterpretes<Interprete extends Comparable<fase1.Interprete>>
 	NodoABBInterpretes right;
 	
 	public boolean hasLeft() {
-		return this.left == null;
+		return !(null == this.left);
 	}
 	
 	public boolean hasRight() {
-		return this.right == null;
+		return !(null == this.right);
 	}
 	
 	public fase1.Interprete buscarInterprete(String nombre) {
-		if (nombre.equals(this.info.getName()))
+		if (nombre.compareTo(this.info.getName()) == 0)
 			return this.info;
 		
 		else if (nombre.compareTo(this.info.getName())<0) {
