@@ -96,13 +96,16 @@ public class CatalogoIMDB implements InterfaceInterpretes{
 		String resultado="";
 		Pelicula peli = catalogoPeliculas.buscarPelicula(titulo);
 		if (peli!=null) {
-			resultado = "Titulo: " + peli.getTitulo() + "\n Anno: " + peli.getAnno() + "\n Rating: " + peli.getRating() + "\n Num. votos: " + peli.getVotos() + "\n Total de interpretes de la pelicula: " + peli.getNumInterpretes();
+			resultado = " Titulo: " + peli.getTitulo() + "\n Anno: " + peli.getAnno() + "\n Rating: " + peli.getRating() + "\n Num. votos: " + peli.getVotos() + "\n Total de interpretes de la pelicula: " + peli.getNumInterpretes();
 			for (int i = 0; i<peli.getListaInterpretes().tamanio();i++) {
-				resultado = resultado + "\n" + peli.getListaInterpretes().getlista().get(i).getName();
+				resultado = resultado + "\n" + "  - " + peli.getListaInterpretes().getlista().get(i).getName();
 			}
+			System.out.println("----------------INFO_PELI----------------");
 			System.out.println(resultado);
+			System.out.println("----------------------------------------- \n");
 		}
 		else {
+			System.out.println("¡ERROR!");
 			System.out.println("La pelicula " + titulo + " no se encuentra.");
 		}
 	}
@@ -115,14 +118,17 @@ public class CatalogoIMDB implements InterfaceInterpretes{
 		String resultado="";
 		Interprete inter = catalogoInterpretes.buscarInterprete(nombre);
 		if (inter!=null) {
-			resultado = "Nombre: " + inter.getName() + "\n Rating: " + inter.getRating() + "\n Total de pelï¿½culas del intï¿½rprete: " + inter.getNumPeliculas();
+			resultado = " Nombre: " + inter.getName() + "\n Rating: " + inter.getRating() + "\n Numero de peliculas: " + inter.getNumPeliculas();
 			for (int i = 0; i<inter.getListaPeliculas().tamanio();i++) {
-				resultado = resultado + "\n" + inter.getListaPeliculas().getLista().get(i).getTitulo();
+				resultado = resultado + "\n" + "  - " + inter.getListaPeliculas().getLista().get(i).getTitulo();
 			}
+			System.out.println("----------------INFO_INTER----------------");
 			System.out.println(resultado);
+			System.out.println("------------------------------------------ \n");
 		}
 		else {
-			System.out.println("El intï¿½rprete no se encuentra.");
+			System.out.println("¡ERROR!");
+			System.out.println("El interprete no se encuentra.");
 		}
 	}
 	/**
@@ -134,10 +140,11 @@ public class CatalogoIMDB implements InterfaceInterpretes{
 	public void anadirVoto(String titulo, float voto) {
 		if (0<=voto && voto<=10) {
 			catalogoPeliculas.buscarPelicula(titulo).anadirVoto(voto);
-			System.out.println("El nuevo rating de la pelï¿½cula es: " + catalogoPeliculas.buscarPelicula(titulo).getRating());
+			System.out.println("El nuevo rating de la pelicula es: " + catalogoPeliculas.buscarPelicula(titulo).getRating());
 		}
 		else {
-			System.out.println("El voto no es vï¿½lido.");
+			System.out.println("¡ERROR!");
+			System.out.println("El voto no es valido.");
 		}
 	}
 	

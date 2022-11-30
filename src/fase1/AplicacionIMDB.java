@@ -55,7 +55,7 @@ public class AplicacionIMDB {
 				  String peli = sc.nextLine();
 				   if(catalogo.getCatalogoP().buscarPelicula(peli) != null){
 				      System.out.println("Introduce el numero del voto que quieras annadir: ");
-				      float voto = sc.nextFloat();
+				      float voto = Float.parseFloat(sc.nextLine());
 				      catalogo.anadirVoto(peli, voto);
 				   	}
 				   else{
