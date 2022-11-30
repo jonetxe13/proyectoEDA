@@ -7,7 +7,7 @@ public class Pelicula {
 	private String titulo;
 	private int anno;
 	private float rating;
-	private float votos;
+	private int votos;
   private int numInterpretes;
 	
 	public Pelicula(String pTitulo, int pAnno, float pRating, int pVotos) {
@@ -22,7 +22,7 @@ public class Pelicula {
 	public String getTitulo() { return this.titulo; }
 	public int getAnno() { return this.anno; }
 	public float getRating() { return this.rating; }
-	public float getVotos() { return this.votos; }
+	public int getVotos() { return this.votos; }
 	public int getNumInterpretes() { return this.numInterpretes; }
 	public ListaInterpretes getListaInterpretes() { return listaInterPel; }
 	
