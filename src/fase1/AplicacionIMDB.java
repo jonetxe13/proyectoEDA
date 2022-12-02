@@ -24,10 +24,12 @@ public class AplicacionIMDB {
 		
 		ABBInterpretes arbol = new ABBInterpretes(catalogo.getCatalogoI().buscarInterprete("Runco, David"));
 		System.out.println(arbol);
-		System.out.println(catalogo.getCatalogoI().buscarInterprete("Alfonso, Martin").getName());
-		arbol.annadirInterprete(catalogo.getCatalogoI().buscarInterprete("Alfonso, Martin"));
-		arbol.buscarInterprete("Runco, David");
 		System.out.println(arbol.buscarInterprete("Runco, David").getName());
+		arbol.annadirInterprete(catalogo.getCatalogoI().buscarInterprete("Alfonso, Martin"));
+
+//		System.out.println(arbol.getRoot().getInfo().getName());
+//		System.out.println(arbol.getRoot().getLeft().getInfo().getName());
+//		System.out.println(arbol.getRoot().getRight());
 		System.out.println(arbol.buscarInterprete("Alfonso, Martin").getName());
 		arbol.eliminarInterprete("Runco, David");
 		System.out.println(arbol.buscarInterprete("Runco, David"));

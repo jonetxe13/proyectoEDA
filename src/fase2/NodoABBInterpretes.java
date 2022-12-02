@@ -13,21 +13,36 @@ public class NodoABBInterpretes<Interprete extends Comparable<fase1.Interprete>>
 	NodoABBInterpretes left;
 	NodoABBInterpretes right;
 	
+	public fase1.Interprete getInfo(){
+		return this.info;
+	}
+	
+	public NodoABBInterpretes getLeft(){
+		return this.left;
+	}
+	
+	public NodoABBInterpretes getRight(){
+		return this.right;
+	}
+	
 	public boolean hasLeft() {
-		return !(null == this.left);
+		return null != this.left;
 	}
 	
 	public boolean hasRight() {
-		return !(null == this.right);
+		return null != this.right;
 	}
 	
 	public fase1.Interprete buscarInterprete(String nombre) {
+//		System.out.println(nombre.compareTo(this.info.getName()));
+//		System.out.println(this.hasLeft());
+//		System.out.println(this.hasRight());
 		if (nombre.compareTo(this.info.getName()) == 0)
 			return this.info;
 		
 		else if (nombre.compareTo(this.info.getName())<0) {
 			if (this.hasLeft()) {
-				return this.left.buscarInterprete(this.info.getName());
+				return this.left.buscarInterprete(nombre);
 			}
 			else return null;
 		}
@@ -40,6 +55,7 @@ public class NodoABBInterpretes<Interprete extends Comparable<fase1.Interprete>>
 	}
 	
 	public void annadirNodo(fase1.Interprete inter) {
+//		System.out.println(inter.compareTo(this.info));
 		if (inter.compareTo(this.info)<0) { //elem debe ir antes que el actual
 			 if (this.hasLeft()) this.left.annadirNodo(inter);
 			 
