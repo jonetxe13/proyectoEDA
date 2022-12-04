@@ -10,21 +10,14 @@ public class ABBInterpretes<Interprete extends Comparable<fase1.Interprete>> imp
 	
 	private NodoABBInterpretes root;
 	
-	public ABBInterpretes( fase1.Interprete info ) {
-		this.root = new NodoABBInterpretes(info);
+	public ABBInterpretes() {
+		
 	}
 	
-	public boolean isEmpty() {
-		return false;
+	public boolean isEmpty() { //FALTA POR HACER ESTE *****************************
+		return this.root == null;
 	}
 	
-//	public fase1.Interprete buscarInterprete(String nombre) {
-//		return null;
-//	}
-	
-//	public void removeMin() {
-//		if(!this.isEmpty()) this.root = this.root.removeMin();
-//	}
 	public NodoABBInterpretes getRoot() {
 		return this.root;
 	}
@@ -51,20 +44,20 @@ public class ABBInterpretes<Interprete extends Comparable<fase1.Interprete>> imp
 	}
 
 	@Override
-	public void annadirInterprete(fase1.Interprete inter) throws InstanceAlreadyExistsException {
+	public void annadirInterprete(fase1.Interprete inter){
 		if (this.isEmpty()) {
 			this.root = new NodoABBInterpretes(inter);
 		}
 		else {
-			this.root.annadirNodo(inter);
+			this.root.annadirInterprete(inter);
 		}
 		
 	};
 	
 	public fase1.Interprete buscarInterprete(String nombre) { // Arreglar esto *********************
-//		if (!this.isEmpty())
-//			return null;
-//		else 
+		if (this.isEmpty())
+			return null;
+		else 
 		return this.root.buscarInterprete(nombre);
 	}
 }

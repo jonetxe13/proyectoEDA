@@ -21,7 +21,7 @@ public class ListaInterpretes implements InterfaceInterpretes{
 		return lista;
 	}
 
-	public void annadirInterprete(Interprete inter) throws InstanceAlreadyExistsException{
+	public void annadirInterprete(Interprete inter){
 		try {
 			if(buscarInterprete(inter.getName()) == null) {
 				lista.add(inter);

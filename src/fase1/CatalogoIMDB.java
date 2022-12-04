@@ -9,14 +9,13 @@ import javax.management.InstanceAlreadyExistsException;
 
 import fase2.InterfaceInterpretes;
 
-public class CatalogoIMDB implements InterfaceInterpretes{
+public class CatalogoIMDB {
 	private static CatalogoIMDB singletonONo;
 	private ListaPeliculas catalogoPeliculas;
 	private InterfaceInterpretes catalogoInterpretes;
 	
 	public CatalogoIMDB() {
 		catalogoPeliculas = new ListaPeliculas();
-		catalogoInterpretes = new ListaInterpretes();
 	}
 
 	public static CatalogoIMDB getSingletonInstance() {
@@ -150,33 +149,16 @@ public class CatalogoIMDB implements InterfaceInterpretes{
 	
 	public void setInterpretes(InterfaceInterpretes interpretes) {
 		this.catalogoInterpretes = interpretes;
-	};
-
-	@Override
-	public void annadirInterprete(Interprete inter) {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
-	public Interprete buscarInterprete(String nom) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Interprete eliminarInterprete(String nom) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	public Pelicula eliminarPelicula(String titulo) {
+	/**
+	* Elimina del catálogo la película cuyo título se pasa como parámetro.
+	* Además, elimina la película de la lista de películas de cada uno de los
+	* intérpretes de dicha película.
+	* Aquellos intérpretes que se quedan sin películas son eliminados del
+	* catálogo, y al resto se les actualiza el rating.
+	**/
+	public Pelicula eliminarPelicula(String titulo) { //FALTA POR HACER *****************************
 		return null;
 	}
 	

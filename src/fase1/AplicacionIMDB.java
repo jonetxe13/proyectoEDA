@@ -20,33 +20,39 @@ public class AplicacionIMDB {
 	    //TO DO: Cargar pelculas	
 		catalogo.cargarPeliculas(Path.of("src/data") + "/films.txt");
 
-		catalogo.cargarInterpretes(Path.of("src/data") + "/cast.txt");
 		
-		ABBInterpretes arbol = new ABBInterpretes(catalogo.getCatalogoI().buscarInterprete("Runco, David"));
-		System.out.println(arbol);
-		System.out.println(arbol.buscarInterprete("Runco, David").getName());
-		arbol.annadirInterprete(catalogo.getCatalogoI().buscarInterprete("Alfonso, Martin"));
+		ABBInterpretes arbol = new ABBInterpretes();
+		catalogo.setInterpretes(arbol);
+		
+		catalogo.cargarInterpretes(Path.of("src/data") + "/cast.txt");
 
+//		System.out.println(arbol);
+//		System.out.println(arbol.buscarInterprete("Runco, David").getName());
+//		arbol.annadirInterprete(catalogo.getCatalogoI().buscarInterprete("Alfonso, Martin"));
+//
 //		System.out.println(arbol.getRoot().getInfo().getName());
 //		System.out.println(arbol.getRoot().getLeft().getInfo().getName());
 //		System.out.println(arbol.getRoot().getRight());
-		System.out.println(arbol.buscarInterprete("Alfonso, Martin").getName());
-		arbol.eliminarInterprete("Runco, David");
-		System.out.println(arbol.buscarInterprete("Runco, David"));
-		
+//		System.out.println(arbol.buscarInterprete("Alfonso, Martin").getName());
+
+		System.out.println("¡Bienvenid@ a la aplicación de IMDB!\n"
+				+ "Cargando películas...");
+		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
+		System.out.println("Cargando interpretes...");
+		System.out.println("En el catalogo hay " + catalogo.getCatalogoI().size() + " interpretes. \n");
+
 		//Men
 		Scanner sc = new Scanner(System.in);
 		int opcion=-1;
 		
 		while(opcion!=0) {
-			System.out.println("------------------MENU------------------");
+
 			System.out.println(" Escoja una opcion:");
 			System.out.println("  1. Mostrar informacion de pelicula");
 			System.out.println("  2. Mostrar informacion de interprete");
 			System.out.println("  3. Anadir voto a pelicula");
 			System.out.println("  4. Eliminar pelicula");
 			System.out.println("  0. Salir");
-			System.out.println("----------------------------------------");
 			
 			opcion = Integer.parseInt(sc.nextLine());
 			switch(opcion) {
@@ -75,7 +81,11 @@ public class AplicacionIMDB {
 					   System.out.println("La pelicula no se encuentra en el catalogo");
 				   }
 				   break;
-
+				   
+			   case 4: 
+				   System.out.println("Introduzca el titulo de una pelicula: \n");
+				   catalogo.eliminarPelicula(sc.nextLine());
+				   System.out.println("En el catalogo quedan " + catalogo.getCatalogoP().tamanio() + " y " + catalogo.getCatalogoI().size() + " interpretes. \n");
 			   case 0:
 				   System.out.println("Cerrando... ");
 				   break;

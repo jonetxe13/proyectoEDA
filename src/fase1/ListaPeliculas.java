@@ -58,7 +58,11 @@ public class ListaPeliculas{
 		return lista.size();
 	}
 	
-	public boolean eliminarPelicula(Pelicula pel) {
-		return false;
+	public boolean eliminarPelicula(Pelicula pel) {//FALTA POR COMPROBAR *****************************
+		if(lista.remove(pel)) {
+			lista.remove(pel);
+			return true;
+		}
+		else { return false; }
 	}
 }

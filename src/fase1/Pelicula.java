@@ -30,14 +30,10 @@ public class Pelicula {
 	* A�de un int�prete a la pel�ula
 	* @param inter Int�prete a a�dir
 	*/
-	public void anadirInterprete(Interprete inter) {	
-		try {
+	public void anadirInterprete(Interprete inter){	
 			listaInterPel.annadirInterprete(inter);
 			numInterpretes++;
-		} catch (InstanceAlreadyExistsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
 	/**
 	* A�de un nuevo voto a la pel�ula.
