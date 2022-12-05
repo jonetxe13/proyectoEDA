@@ -14,7 +14,7 @@ public class ABBInterpretes<Interprete extends Comparable<fase1.Interprete>> imp
 		
 	}
 	
-	public boolean isEmpty() { //FALTA POR HACER ESTE *****************************
+	public boolean isEmpty() {
 		return this.root == null;
 	}
 	
@@ -54,7 +54,7 @@ public class ABBInterpretes<Interprete extends Comparable<fase1.Interprete>> imp
 		
 	};
 	
-	public fase1.Interprete buscarInterprete(String nombre) { // Arreglar esto *********************
+	public fase1.Interprete buscarInterprete(String nombre) {
 		if (this.isEmpty())
 			return null;
 		else 

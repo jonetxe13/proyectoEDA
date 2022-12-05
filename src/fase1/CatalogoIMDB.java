@@ -99,9 +99,7 @@ public class CatalogoIMDB {
 			for (int i = 0; i<peli.getListaInterpretes().tamanio();i++) {
 				resultado = resultado + "\n" + "  - " + peli.getListaInterpretes().getlista().get(i).getName();
 			}
-			System.out.println("----------------INFO_PELI----------------");
 			System.out.println(resultado);
-			System.out.println("----------------------------------------- \n");
 		}
 		else {
 			System.out.println("¡ERROR!");
@@ -121,9 +119,7 @@ public class CatalogoIMDB {
 			for (int i = 0; i<inter.getListaPeliculas().tamanio();i++) {
 				resultado = resultado + "\n" + "  - " + inter.getListaPeliculas().getLista().get(i).getTitulo();
 			}
-			System.out.println("----------------INFO_INTER----------------");
 			System.out.println(resultado);
-			System.out.println("------------------------------------------ \n");
 		}
 		else {
 			System.out.println("¡ERROR!");
