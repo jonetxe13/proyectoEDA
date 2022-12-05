@@ -57,7 +57,6 @@ public class ListaInterpretes implements InterfaceInterpretes{
 	}
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return lista.size();
 	}
 }

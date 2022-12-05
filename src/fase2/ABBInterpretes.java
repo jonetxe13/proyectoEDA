@@ -36,11 +36,13 @@ public class ABBInterpretes<Interprete extends Comparable<fase1.Interprete>> imp
 			 return this.root.info;
 		}
 		return null;
-
 	}
 	
-	public int size() { // FALTA POR HACER ESTE ***********************************
-		return 0;
+	public int size() {
+		if(!this.isEmpty()) {
+			return this.root.size(0);
+		}
+		return -1;
 	}
 
 	@Override
@@ -51,8 +53,7 @@ public class ABBInterpretes<Interprete extends Comparable<fase1.Interprete>> imp
 		else {
 			this.root.annadirInterprete(inter);
 		}
-		
-	};
+	}
 	
 	public fase1.Interprete buscarInterprete(String nombre) {
 		if (this.isEmpty())

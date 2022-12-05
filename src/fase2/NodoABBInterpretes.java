@@ -105,4 +105,16 @@ public class NodoABBInterpretes<Interprete extends Comparable<fase1.Interprete>>
 			 return this.info;
 		}
 	}
+
+	public int size(int nivel) {
+		
+		nivel++;
+		if(this.hasLeft()) {
+			return this.left.size(nivel);
+		}
+		if(this.hasRight()) {
+			return this.right.size(nivel);
+		}
+		return nivel;
+	}
 }

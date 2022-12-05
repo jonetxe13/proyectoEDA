@@ -2,6 +2,7 @@ package fase1;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -155,7 +156,18 @@ public class CatalogoIMDB {
 	* catálogo, y al resto se les actualiza el rating.
 	**/
 	public Pelicula eliminarPelicula(String titulo) { //FALTA POR HACER *****************************
-		return null;
+		Pelicula pel = catalogoPeliculas.buscarPelicula(titulo);
+		ListaInterpretes interpretes = pel.getListaInterpretes();
+		
+		for(Interprete inter: interpretes.getlista()) {
+			this.catalogoInterpretes.buscarInterprete(inter.getName()).getListaPeliculas().eliminarPelicula(pel);
+			if(inter.getListaPeliculas() == null) {
+				this.catalogoInterpretes.eliminarInterprete(inter.getName());
+			}
+		}
+		this.catalogoPeliculas.eliminarPelicula(pel);
+
+		return pel;
 	}
 	
 }
