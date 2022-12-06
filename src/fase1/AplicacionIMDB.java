@@ -14,17 +14,7 @@ public class AplicacionIMDB {
 	
 	public static void main(String[] args) throws InstanceAlreadyExistsException{
 		CatalogoIMDB catalogo = new CatalogoIMDB();
-
-          //TO DO: ...
-		
 	    //TO DO: Cargar pelculas	
-		catalogo.cargarPeliculas(Path.of("src/data") + "/films.txt");
-
-		
-		ABBInterpretes arbol = new ABBInterpretes();
-		catalogo.setInterpretes(arbol);
-		
-		catalogo.cargarInterpretes(Path.of("src/data") + "/cast.txt");
 
 //		System.out.println(arbol);
 //		System.out.println(arbol.buscarInterprete("Runco, David").getName());
@@ -37,8 +27,30 @@ public class AplicacionIMDB {
 
 		System.out.println("¡Bienvenid@ a la aplicación de IMDB!\n"
 				+ "Cargando películas...");
+
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
 		System.out.println("Cargando interpretes...");
+
+		long inicio = System.nanoTime();
+
+		catalogo.cargarPeliculas(Path.of("src/data") + "/films_tiny.txt");
+
+		long terminar = System.nanoTime();
+
+		System.out.println((terminar - inicio)/1000000);
+				
+		ABBInterpretes arbol = new ABBInterpretes();
+		catalogo.setInterpretes(arbol);
+
+		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
+		System.out.println("Cargando interpretes...");
+		long startTime = System.nanoTime();
+		catalogo.cargarInterpretes(Path.of("src/data") + "/cast_tiny.txt");
+
+		long endTime = System.nanoTime();
+
+		System.out.println((endTime - startTime)/1000000);
+		
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoI().size() + " interpretes. \n");
 
 		//Men

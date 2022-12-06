@@ -2,6 +2,11 @@ package fase1;
 
 import java.util.ArrayList;
 
+import java.util.Collection;
+
+import java.util.Collection;
+import java.util.Collections;
+
 import javax.management.InstanceAlreadyExistsException;
 
 /**
@@ -14,15 +19,13 @@ public class ListaPeliculas{
 	public ListaPeliculas() {
 		lista= new ArrayList<Pelicula>();
 	}
-	/**
-	* A�de una pel�ula a la lista
-	* @param pel Pel�ula a a�dir
-	*/
-	public void anadirPelicula(Pelicula pel) throws InstanceAlreadyExistsException {
-		if (buscarPelicula(pel.getTitulo()) == null) {
+		
+	public void anadirPelicula(Pelicula pel) throws InstanceAlreadyExistsException{		
+
+		if (!lista.contains(pel)) {
 			lista.add(pel);
 		}
-		else {throw new InstanceAlreadyExistsException();}
+		else {  /**throw new InstanceAlreadyExistsException();**/}
 	}
 
 	public ArrayList<Pelicula> getLista(){
@@ -43,11 +46,23 @@ public class ListaPeliculas{
 	* @return la Pel�ula (si est�en la lista), null en caso contrario
 	*/
 	public Pelicula buscarPelicula(String titulo) {
-		Pelicula res = null;
-		for(Pelicula pelic: lista) {
-			if(pelic.getTitulo().equals(titulo)) res = pelic;
+		int min = 0;
+		int max = lista.size();
+		int pos = 0;
+		while(min <= max) {
+			pos = (min+max)/2;
+			
+			if( titulo.compareTo(lista.get(pos).getTitulo()) == 0 ) {
+				return lista.get(pos);
+			}
+			else if( titulo.compareTo(lista.get(pos).getTitulo()) > 0 ) {
+				min = pos+1;
+			}
+			else {
+				max = pos-1;
+			}
 		}
-		return res;
+		return null;
 	}
 
 	public Pelicula getPelicula(int index) {
@@ -64,5 +79,10 @@ public class ListaPeliculas{
 			return true;
 		}
 		else { return false; }
+	}
+
+	public void anadirPrimeraPelicula(Pelicula peli) {
+		// TODO Auto-generated method stub
+		lista.add(peli);
 	}
 }

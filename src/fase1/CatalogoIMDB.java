@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
 
 import javax.management.InstanceAlreadyExistsException;
 
+import fase2.ABBInterpretes;
+
 import fase2.InterfaceInterpretes;
 
 public class CatalogoIMDB {
@@ -44,12 +46,19 @@ public class CatalogoIMDB {
 
 	public void cargarPeliculas(String nomF) throws InstanceAlreadyExistsException {
 		try {
+			int unaVez = 0;
+
 			Scanner entrada = new Scanner(new FileReader(nomF));
 			String linea;
 			while (entrada.hasNext()) {
 				linea=entrada.nextLine();
 				String[] arrayPuntos = linea.split("	");
 				Pelicula peli = new Pelicula(arrayPuntos[0], Integer.parseInt(arrayPuntos[1]),Float.parseFloat(arrayPuntos[2]),Integer.parseInt(arrayPuntos[3]));
+				if(unaVez == 0) {
+					catalogoPeliculas.anadirPrimeraPelicula(peli);
+					unaVez = 1;
+				}
+
 				catalogoPeliculas.anadirPelicula(peli);
 			}
 			
@@ -75,10 +84,15 @@ public class CatalogoIMDB {
 
 				
 				String[] listaTitulos = arrayPuntos[1].split("\\|\\|");
-			
+
+				System.out.println(inter.getName());
+				
 				for (int i = 0; i < listaTitulos.length; i++) {
-				 inter.anadirPelicula(catalogoPeliculas.buscarPelicula(listaTitulos[i]));
-				 catalogoPeliculas.buscarPelicula(listaTitulos[i]).anadirInterprete(inter);
+					System.out.println(listaTitulos[i]);
+					if(!listaTitulos[i].contains("<") || !listaTitulos[i].contains(">")) {
+						inter.anadirPelicula(catalogoPeliculas.buscarPelicula(listaTitulos[i]));
+						catalogoPeliculas.buscarPelicula(listaTitulos[i]).anadirInterprete(inter);
+					}
 				}
 
 				inter.calcularRating();
@@ -155,7 +169,9 @@ public class CatalogoIMDB {
 	* Aquellos intérpretes que se quedan sin películas son eliminados del
 	* catálogo, y al resto se les actualiza el rating.
 	**/
-	public Pelicula eliminarPelicula(String titulo) { //FALTA POR HACER *****************************
+
+	public Pelicula eliminarPelicula(String titulo) {
+
 		Pelicula pel = catalogoPeliculas.buscarPelicula(titulo);
 		ListaInterpretes interpretes = pel.getListaInterpretes();
 		
