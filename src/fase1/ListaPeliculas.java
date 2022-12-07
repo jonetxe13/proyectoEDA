@@ -21,11 +21,7 @@ public class ListaPeliculas{
 	}
 		
 	public void anadirPelicula(Pelicula pel) throws InstanceAlreadyExistsException{		
-
-		if (!lista.contains(pel)) {
 			lista.add(pel);
-		}
-		else {  /**throw new InstanceAlreadyExistsException();**/}
 	}
 
 	public ArrayList<Pelicula> getLista(){
@@ -79,10 +75,5 @@ public class ListaPeliculas{
 			return true;
 		}
 		else { return false; }
-	}
-
-	public void anadirPrimeraPelicula(Pelicula peli) {
-		// TODO Auto-generated method stub
-		lista.add(peli);
 	}
 }

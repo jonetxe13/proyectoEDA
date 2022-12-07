@@ -22,17 +22,7 @@ public class ListaInterpretes implements InterfaceInterpretes{
 	}
 
 	public void annadirInterprete(Interprete inter){
-		try {
-			if(buscarInterprete(inter.getName()) == null) {
 				lista.add(inter);
-			}
-			else {
-				throw new InstanceAlreadyExistsException();
-			}
-		}
-		catch( InstanceAlreadyExistsException e ) {
-			System.out.println("El interprete ya se encuentra en la lista.");
-		}
 	}
 	/**
 	* Busca un int�prete en la lista y lo devuelve

@@ -42,6 +42,7 @@ public class Interprete{
 	 */
 	public void anadirPelicula(Pelicula pel) {
 		try {
+			pel.anadirInterprete(this);
 			listaPeliculas.anadirPelicula(pel);
 			numPeliculas++;
 		} catch (InstanceAlreadyExistsException e) {

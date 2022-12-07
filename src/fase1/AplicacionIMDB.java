@@ -28,27 +28,30 @@ public class AplicacionIMDB {
 		System.out.println("¡Bienvenid@ a la aplicación de IMDB!\n"
 				+ "Cargando películas...");
 
-		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
-		System.out.println("Cargando interpretes...");
+
 
 		long inicio = System.nanoTime();
 
-		catalogo.cargarPeliculas(Path.of("src/data") + "/films_tiny.txt");
+		catalogo.cargarPeliculas(Path.of("src/data") + "/films.txt");
 
 		long terminar = System.nanoTime();
-
 		System.out.println((terminar - inicio)/1000000);
+		
+		
+		System.out.println("Cargando interpretes...");
+
+		
 				
 		ABBInterpretes arbol = new ABBInterpretes();
 		catalogo.setInterpretes(arbol);
-
+		
+		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
 		System.out.println("Cargando interpretes...");
 		long startTime = System.nanoTime();
-		catalogo.cargarInterpretes(Path.of("src/data") + "/cast_tiny.txt");
+		catalogo.cargarInterpretes(Path.of("src/data") + "/cast.txt");
 
 		long endTime = System.nanoTime();
-
 		System.out.println((endTime - startTime)/1000000);
 		
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoI().size() + " interpretes. \n");

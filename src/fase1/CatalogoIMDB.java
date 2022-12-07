@@ -46,18 +46,12 @@ public class CatalogoIMDB {
 
 	public void cargarPeliculas(String nomF) throws InstanceAlreadyExistsException {
 		try {
-			int unaVez = 0;
-
 			Scanner entrada = new Scanner(new FileReader(nomF));
 			String linea;
 			while (entrada.hasNext()) {
 				linea=entrada.nextLine();
-				String[] arrayPuntos = linea.split("	");
+				String[] arrayPuntos = linea.split("\t");
 				Pelicula peli = new Pelicula(arrayPuntos[0], Integer.parseInt(arrayPuntos[1]),Float.parseFloat(arrayPuntos[2]),Integer.parseInt(arrayPuntos[3]));
-				if(unaVez == 0) {
-					catalogoPeliculas.anadirPrimeraPelicula(peli);
-					unaVez = 1;
-				}
 
 				catalogoPeliculas.anadirPelicula(peli);
 			}
@@ -84,17 +78,15 @@ public class CatalogoIMDB {
 
 				
 				String[] listaTitulos = arrayPuntos[1].split("\\|\\|");
-
-				System.out.println(inter.getName());
 				
-				for (int i = 0; i < listaTitulos.length; i++) {
-					System.out.println(listaTitulos[i]);
-					if(!listaTitulos[i].contains("<") || !listaTitulos[i].contains(">")) {
-						inter.anadirPelicula(catalogoPeliculas.buscarPelicula(listaTitulos[i]));
-						catalogoPeliculas.buscarPelicula(listaTitulos[i]).anadirInterprete(inter);
+				for (String titulo: listaTitulos) {
+					try {
+						inter.anadirPelicula(catalogoPeliculas.buscarPelicula(titulo));
+					}
+					catch(NullPointerException e) {
+						System.out.println("La pelicula de la lista tiene un simbolo no valido.");
 					}
 				}
-
 				inter.calcularRating();
 				catalogoInterpretes.annadirInterprete(inter);
 			}

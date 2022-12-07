@@ -33,7 +33,6 @@ public class Pelicula {
 	public void anadirInterprete(Interprete inter){	
 			listaInterPel.annadirInterprete(inter);
 			numInterpretes++;
-
 	}
 	/**
 	* A�de un nuevo voto a la pel�ula.
