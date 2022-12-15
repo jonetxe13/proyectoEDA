@@ -32,7 +32,7 @@ public class AplicacionIMDB {
 
 		long inicio = System.nanoTime();
 
-		catalogo.cargarPeliculas(Path.of("src/data") + "/films.txt");
+		catalogo.cargarPeliculas(Path.of("src/data") + "/films_small.txt");
 
 		long terminar = System.nanoTime();
 		System.out.println((terminar - inicio)/1000000);
@@ -49,7 +49,7 @@ public class AplicacionIMDB {
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
 		System.out.println("Cargando interpretes...");
 		long startTime = System.nanoTime();
-		catalogo.cargarInterpretes(Path.of("src/data") + "/cast.txt");
+		catalogo.cargarInterpretes(Path.of("src/data") + "/cast_small.txt");
 
 		long endTime = System.nanoTime();
 		System.out.println((endTime - startTime)/1000000);

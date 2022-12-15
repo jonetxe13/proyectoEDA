@@ -1,5 +1,7 @@
 package fase1;
 
+import java.util.HashSet;
+
 import javax.management.InstanceAlreadyExistsException;
 
 public class Interprete{
@@ -55,4 +57,11 @@ public class Interprete{
 		else if(this.getName().compareTo(inter.getName()) < 0) return -1;
 		return 1;
 	}
+	
+	/**
+	* Devuelve un HashSet con todos los adyacentes del intérprete, es decir,
+	* aquellos intérpretes con los que ha participado en alguna película.
+	* @return: el HashSet con los intérpretes que son adyacentes.
+	*/
+	public HashSet<Interprete> obtenerAdyacentes(){ return null; }
 }

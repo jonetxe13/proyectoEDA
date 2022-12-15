@@ -178,4 +178,21 @@ public class CatalogoIMDB {
 		return pel;
 	}
 	
+	/**
+	* Devuelve la distancia mínima entre dos intérpretes dados.
+	* @param inter1: nombre del primer intérprete
+	* @param inter2: nombre del segundo intérprete
+	* @return: distancia mínima entre ambos intérpretes. En caso de que no
+	* estén conectados, devuelve -1.
+	*/
+	public int distancia(String inter1, String inter2) {
+		return 0;
+	}
+	/**
+	* Imprime el camino más corto entre dos intérpretes. Si no existe camino,
+	* imprime un mensaje indicando este hecho.
+	* @param inter1: nombre del primer intérprete
+	* @param inter2: nombre del segundo intérprete
+	*/
+	public void imprimirCamino(String inter1, String inter2) {}
 }
