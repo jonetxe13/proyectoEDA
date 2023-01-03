@@ -28,6 +28,10 @@ public class ListaPeliculas{
 		return lista;
 	}
 
+	/**
+	* Imprime los titulos de las peliculas
+	* @return Un String con la lista de las peliculas
+	*/
 	public String imprimirLista() {
 		String res = "";
 		for(Pelicula pelic: lista) {
@@ -68,7 +72,11 @@ public class ListaPeliculas{
 	public int tamanio() {
 		return lista.size();
 	}
-	
+	/**
+	* Elimina de la lista la película pasada como parámetro.
+	* @param pel: película a eliminar
+	* @return true si se ha eliminado, false en caso contrario
+	*/
 	public boolean eliminarPelicula(Pelicula pel) {//FALTA POR COMPROBAR *****************************
 		if(lista.remove(pel)) {
 			lista.remove(pel);

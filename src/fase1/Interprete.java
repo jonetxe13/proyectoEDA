@@ -1,6 +1,9 @@
 package fase1;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import javax.management.InstanceAlreadyExistsException;
 
@@ -9,8 +12,10 @@ public class Interprete{
 	private ListaPeliculas listaPeliculas;
 	private int numPeliculas;
 	private float rating;
+	private ArrayList<ArrayList<Interprete>>grafo;
 	
 	public Interprete(String name) {
+		this.grafo = new ArrayList<ArrayList<Interprete>>();
 		this.name = name;
 		rating = -1;
 		numPeliculas = 0;
@@ -52,16 +57,40 @@ public class Interprete{
 		}
 	}
 	
+	/**
+	* Compara dos nombres de interpretes
+	* @return Si son iguales devuelve 0. Si es menor -1 y si es mayor 1.
+	*/
 	public int compareTo(Interprete inter) {
 		if(this.getName().equals(inter.getName())) return 0;
 		else if(this.getName().compareTo(inter.getName()) < 0) return -1;
 		return 1;
 	}
 	
-	/**
-	* Devuelve un HashSet con todos los adyacentes del intérprete, es decir,
-	* aquellos intérpretes con los que ha participado en alguna película.
-	* @return: el HashSet con los intérpretes que son adyacentes.
-	*/
-	public HashSet<Interprete> obtenerAdyacentes(){ return null; }
+	public HashSet<Interprete> obtenerAdyacentes(Interprete Inter) { //recorrido por anchura
+		Interprete nodo;
+		
+		HashSet<Interprete> adyacentes = new HashSet<Interprete>();
+		Queue <Interprete> cola = new LinkedList <Interprete>();
+		boolean[] visitados = new boolean [grafo.size()];
+		
+		cola.add(Inter);
+		visitados[Inter.hashCode()] = true;
+		
+		while (!cola.isEmpty()) {
+			
+			nodo = cola.remove();
+			adyacentes.add(nodo);
+			
+			for (int i = 0; i < grafo.size(); i++) {
+				if (!visitados[nodo.hashCode()]) {
+					visitados[nodo.hashCode()] = true;
+					cola.add(nodo);
+					
+				}
+			}
+		}
+	return adyacentes;
+	}
+
 }

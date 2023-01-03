@@ -21,9 +21,14 @@ public class ListaInterpretes implements InterfaceInterpretes{
 		return lista;
 	}
 
+	/**
+	* Añade un intérprete a la lista
+	* @param inter Intérprete a añadir
+	*/
 	public void annadirInterprete(Interprete inter){
 				lista.add(inter);
 	}
+	
 	/**
 	* Busca un intï¿½prete en la lista y lo devuelve
 	* @param nombre Nombre del intï¿½prete a buscar
@@ -36,6 +41,10 @@ public class ListaInterpretes implements InterfaceInterpretes{
 		return null;
 	}
 
+	/**
+	* Devuelve el tamaño de la lista
+	* @return un entero con el tamaño
+	*/
 	public int tamanio(){
 	    return lista.size();
 	}

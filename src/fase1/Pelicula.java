@@ -40,7 +40,6 @@ public class Pelicula {
 	* @param voto
 	*/
 	public void anadirVoto(float voto) {
-		// Ver ayuda en siguiente apartado
 		if(voto != -1.0) {
 			this.rating = (this.rating * votos + voto) / (votos + 1);
 			this.votos++;
@@ -48,6 +47,6 @@ public class Pelicula {
       else{
       votos = 1;
       rating = voto;
-    }
+      }
 	}
 }

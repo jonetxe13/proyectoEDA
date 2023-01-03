@@ -32,7 +32,11 @@ public class NodoABBInterpretes<Interprete extends Comparable<fase1.Interprete>>
 	public boolean hasRight() {
 		return null != this.right;
 	}
-	
+	/**
+	* Busca un intérprete en la lista y lo devuelve
+	* @param nombre Nombre del intérprete a buscar
+	* @return el Interprete (si está en la lista), null en caso contrario
+	*/
 	public fase1.Interprete buscarInterprete(String nombre) {
 //		System.out.println(nombre.compareTo(this.info.getName()));
 //		System.out.println(this.hasLeft());
@@ -54,6 +58,10 @@ public class NodoABBInterpretes<Interprete extends Comparable<fase1.Interprete>>
 		}
 	}
 	
+	/**
+	* Añade un intérprete a la lista
+	* @param inter Intérprete a añadir
+	*/
 	public void annadirInterprete(fase1.Interprete inter) {
 //		System.out.println(inter.compareTo(this.info));
 		if (inter.compareTo(this.info)<0) { //elem debe ir antes que el actual
@@ -67,7 +75,10 @@ public class NodoABBInterpretes<Interprete extends Comparable<fase1.Interprete>>
 		}
 
 	}
-	
+	/**
+	* Elimina el nodo mas pequeño
+	* @return el valor del nodo
+	*/
 	public ResultadoRemoveMin removeMin() {
 		 ResultadoRemoveMin resul = new ResultadoRemoveMin();
 		 
@@ -83,6 +94,12 @@ public class NodoABBInterpretes<Interprete extends Comparable<fase1.Interprete>>
 		 return resul;
 	}
 	
+	/**
+	* Elimina un intérprete del árbol (puede seguir estando en las listas de
+	* intérpretes de las películas)
+	* @param nombre Nombre del intérprete a eliminar
+	* @return el Interprete (si se ha eliminado), null en caso contrario
+	*/
 	public fase1.Interprete eliminarInterprete(String nombre){
 		int comp = nombre.compareTo(this.info.getName());
 		
@@ -106,6 +123,10 @@ public class NodoABBInterpretes<Interprete extends Comparable<fase1.Interprete>>
 		}
 	}
 
+	/**
+	* Devuelve el nº de elementos del árbol.
+	* @return nº de elementos del árbol
+	*/
 	public int size(int nivel) {
 		
 		nivel++;

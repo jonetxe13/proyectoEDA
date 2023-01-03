@@ -3,6 +3,10 @@ package fase1;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -44,6 +48,10 @@ public class CatalogoIMDB {
 	*/
 	// Ver ayuda en siguiente apartado
 
+	/**
+	 * @param nomF
+	 * @throws InstanceAlreadyExistsException
+	 */
 	public void cargarPeliculas(String nomF) throws InstanceAlreadyExistsException {
 		try {
 			Scanner entrada = new Scanner(new FileReader(nomF));
@@ -52,14 +60,11 @@ public class CatalogoIMDB {
 				linea=entrada.nextLine();
 				String[] arrayPuntos = linea.split("\t");
 				Pelicula peli = new Pelicula(arrayPuntos[0], Integer.parseInt(arrayPuntos[1]),Float.parseFloat(arrayPuntos[2]),Integer.parseInt(arrayPuntos[3]));
-
 				catalogoPeliculas.anadirPelicula(peli);
-			}
-			
+			}	
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	/**
 	* Carga los intï¿½pretes del catï¿½ogo desde el fichero indicado
@@ -75,10 +80,7 @@ public class CatalogoIMDB {
 				linea=entrada.nextLine();
 				String[] arrayPuntos = linea.split("->");
 				Interprete inter = new Interprete(arrayPuntos[0]);
-
-				
 				String[] listaTitulos = arrayPuntos[1].split("\\|\\|");
-				
 				for (String titulo: listaTitulos) {
 					try {
 						inter.anadirPelicula(catalogoPeliculas.buscarPelicula(titulo));
@@ -102,7 +104,8 @@ public class CatalogoIMDB {
 		String resultado="";
 		Pelicula peli = catalogoPeliculas.buscarPelicula(titulo);
 		if (peli!=null) {
-			resultado = " Titulo: " + peli.getTitulo() + "\n Anno: " + peli.getAnno() + "\n Rating: " + peli.getRating() + "\n Num. votos: " + peli.getVotos() + "\n Total de interpretes de la pelicula: " + peli.getNumInterpretes();
+			resultado = " Titulo: " + peli.getTitulo() + "\n Anno: " + peli.getAnno() + "\n Rating: " + peli.getRating() + 
+			"\n Num. votos: " + peli.getVotos() + "\n Total de interpretes de la pelicula: " + peli.getNumInterpretes();
 			for (int i = 0; i<peli.getListaInterpretes().tamanio();i++) {
 				resultado = resultado + "\n" + "  - " + peli.getListaInterpretes().getlista().get(i).getName();
 			}
@@ -149,7 +152,11 @@ public class CatalogoIMDB {
 			System.out.println("El voto no es valido.");
 		}
 	}
-	
+	/**
+	* Inicializa el conjunto de intérpretes del catálogo con el conjunto de
+	* intérpretes que se le pasa como parámetro
+	* @param intérpretes: conjunto de intérpretes
+	*/
 	public void setInterpretes(InterfaceInterpretes interpretes) {
 		this.catalogoInterpretes = interpretes;
 	}
@@ -161,7 +168,6 @@ public class CatalogoIMDB {
 	* Aquellos intérpretes que se quedan sin películas son eliminados del
 	* catálogo, y al resto se les actualiza el rating.
 	**/
-
 	public Pelicula eliminarPelicula(String titulo) {
 
 		Pelicula pel = catalogoPeliculas.buscarPelicula(titulo);
@@ -186,13 +192,67 @@ public class CatalogoIMDB {
 	* estén conectados, devuelve -1.
 	*/
 	public int distancia(String inter1, String inter2) {
-		return 0;
-	}
+		
+		HashMap<String, Integer> visitados = new HashMap<String, Integer>();
+		
+		Queue<String> cola = new LinkedList<String>();
+		cola.add(inter1);
+		visitados.put(inter1,0);
+		
+		boolean encontrado = false;
+		
+		while(!cola.isEmpty() && !encontrado) {
+			String inter = cola.remove();
+			if(inter.equals(inter2)) encontrado = true;
+			else {
+				for(String aux:inter.obtenerAdyacentes()) {
+					if(!visitados.containsKey(aux)) {
+						cola.add(aux);
+						visitados.put(aux, visitados.get(inter)+1);
+					}
+				}
+			}
+		}
+		if(encontrado) return visitados.get(inter2);
+		else return -1;
+		}
+	
 	/**
 	* Imprime el camino más corto entre dos intérpretes. Si no existe camino,
 	* imprime un mensaje indicando este hecho.
 	* @param inter1: nombre del primer intérprete
 	* @param inter2: nombre del segundo intérprete
 	*/
-	public void imprimirCamino(String inter1, String inter2) {}
+	public void imprimirCamino(String inter1, String inter2) {
+		
+		LinkedList<String> resultado = new LinkedList<String>();
+		
+		HashMap<String, String> visitados = new HashMap<String, String>();
+		
+		Queue<String> cola = new LinkedList<String>();
+		cola.add(inter1);
+		visitados.put(inter1, null);
+		
+		boolean encontrado = false;
+		while(!cola.isEmpty() && !encontrado) {
+			String calle = cola.remove();
+			if(calle.equals(inter2)) encontrado = true;
+			else {
+				for(String aux: calle.obtenerAdyacentes()) {
+					if(!visitados.containsKey(aux)) {
+						cola.add(aux);
+						visitados.put(aux, calle);
+					}	
+				}
+			}
+		}
+		
+		if(encontrado) {
+			String actual = inter2;
+			while(actual!=null) {
+				resultado.addFirst(actual);
+				actual = visitados.get(actual);
+			}
+		}
+	}
 }
