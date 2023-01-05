@@ -92,7 +92,6 @@ public class CatalogoIMDB {
 					}
 				}
 				inter.calcularRating();
-				System.out.println(inter.getName());
 				catalogoInterpretes.annadirInterprete(inter.getName(), inter);
 			}
 		} catch (FileNotFoundException e) {

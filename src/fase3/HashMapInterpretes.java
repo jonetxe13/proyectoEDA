@@ -1,9 +1,10 @@
 package fase3;
 
+import java.lang.String;
 import fase1.Interprete;
 import fase2.InterfaceInterpretes;
 
-public class HashMapInterpretes<String, Interprete> implements InterfaceInterpretes{
+public class HashMapInterpretes implements InterfaceInterpretes{
 
 	Item<String, fase1.Interprete>[] tabla;
 	int maxsize;
@@ -18,6 +19,7 @@ public class HashMapInterpretes<String, Interprete> implements InterfaceInterpre
 	}
 
 	public int hash(String clave) {
+		System.out.println(clave.hashCode());
 		return clave.hashCode() % maxsize;
 	}
 
@@ -100,21 +102,50 @@ public class HashMapInterpretes<String, Interprete> implements InterfaceInterpre
 		}
 		return b;
 	}
-@Override
-	public fase1.Interprete buscarInterprete(String nom) {
-		int indice = hash((String) nom);
-		while (tabla[indice] != null) {
-			if (tabla[indice].clave.equals(nom)) {
-				return tabla[indice].valor;
-			} else {
-				indice = (indice + 1) % maxsize;
-			}
-		}
-		return null;
-	}
 	
-	public void annadirInterprete (String clave, fase1.Interprete valor) {
+//	public fase1.Interprete buscarInterprete(String nom) {
+//		int indice = hash((String) nom);
+//		while (tabla[indice] != null) {
+//			if (tabla[indice].clave.equals(nom)) {
+//				return tabla[indice].valor;
+//			} else {
+//				indice = (indice + 1) % maxsize;
+//			}
+//		}
+//		return null;
+//	}
+	
+//	public void annadirInterprete (String clave, fase1.Interprete valor) {
+//		int indice = hash(clave);
+//		boolean encontrado = false;
+//		int reserva = -1;
+//		
+//		 	while(!encontrado && tabla[indice]!=null) {
+//		 		if(tabla[indice].equals(noItem)) {
+//		 			if(reserva==-1) {
+//		 				reserva = indice;
+//		 			}
+//		 			indice = (indice+1)%maxsize;
+//		 		}else if (tabla[indice].clave.equals(clave)) encontrado = true;
+//		 		else indice = (indice + 1)%maxsize;
+//		 	}
+//		 	
+//		 	fase1.Interprete resultado;
+//		 	if(encontrado) {
+//		 		resultado = tabla[indice].valor;
+//		 		tabla[indice].valor = valor;
+//		 	}
+//		 	else {
+//		 		if(reserva!=-1) indice = reserva;
+//		 		tabla[indice]=new Item<String, fase1.Interprete>(clave,valor);
+//		 		size++;
+//		 	}
+//	}
+	@Override
+	public void annadirInterprete(String clave, fase1.Interprete valor) {
+		// TODO Auto-generated method stub
 		int indice = hash(clave);
+		System.out.println(indice);
 		boolean encontrado = false;
 		int reserva = -1;
 		
@@ -138,16 +169,11 @@ public class HashMapInterpretes<String, Interprete> implements InterfaceInterpre
 		 		tabla[indice]=new Item<String, fase1.Interprete>(clave,valor);
 		 		size++;
 		 	}
-	}
-
-	@Override
-	public void annadirInterprete(java.lang.String string, fase1.Interprete inter) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public fase1.Interprete eliminarInterprete(java.lang.String nom) {
+	public fase1.Interprete eliminarInterprete(String nom) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -156,6 +182,19 @@ public class HashMapInterpretes<String, Interprete> implements InterfaceInterpre
 	public int size() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public fase1.Interprete buscarInterprete(String nom) {
+		int indice = hash(nom);
+		while (tabla[indice] != null) {
+			if (tabla[indice].clave.equals(nom)) {
+				return tabla[indice].valor;
+			} else {
+				indice = (indice + 1) % maxsize;
+			}
+		}
+		return null;
 	}
 
 }

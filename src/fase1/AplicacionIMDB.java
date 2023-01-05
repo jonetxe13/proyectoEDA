@@ -43,7 +43,7 @@ public class AplicacionIMDB {
 		
 				
 //		ABBInterpretes arbol = new ABBInterpretes();
-		HashMapInterpretes<String, Interprete> hashmap = new HashMapInterpretes<>(10);
+		HashMapInterpretes hashmap = new HashMapInterpretes(100000);
 		catalogo.setInterpretes(hashmap);
 		
 	
@@ -58,8 +58,9 @@ public class AplicacionIMDB {
 		
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoI().size() + " interpretes. \n");
 		
+		
 		// seccion para pruebas *****************************************************************************************************************
-		System.out.println(catalogo.getCatalogoI().buscarInterprete("Laguiller, Arlette"));
+//		System.out.println(catalogo.getCatalogoI().buscarInterprete("Laguiller, Arlette"));
 		System.out.println(catalogo.distancia("Laguiller, Arlette", "Powell, Josh (I)"));
 		// fin seccion para pruebas *************************************************************************************************************
 

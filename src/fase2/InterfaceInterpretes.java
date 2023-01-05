@@ -8,5 +8,5 @@ public interface InterfaceInterpretes {
 	public void annadirInterprete(String string, Interprete inter);
 	public Interprete eliminarInterprete(String nom);
 	public int size();
-	Interprete buscarInterprete(String nom);
+	fase1.Interprete buscarInterprete(String nom);
 }
