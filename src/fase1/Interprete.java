@@ -67,30 +67,17 @@ public class Interprete{
 		return 1;
 	}
 	
-	public HashSet<Interprete> obtenerAdyacentes(Interprete Inter) { //recorrido por anchura
+	public HashSet<Interprete> obtenerAdyacentes() { //recorrido por anchura
 		Interprete nodo;
+		Integer i;
 		
 		HashSet<Interprete> adyacentes = new HashSet<Interprete>();
-		Queue <Interprete> cola = new LinkedList <Interprete>();
-		boolean[] visitados = new boolean [grafo.size()];
 		
-		cola.add(Inter);
-		visitados[Inter.hashCode()] = true;
-		
-		while (!cola.isEmpty()) {
-			
-			nodo = cola.remove();
-			adyacentes.add(nodo);
-			
-			for (int i = 0; i < grafo.size(); i++) {
-				if (!visitados[nodo.hashCode()]) {
-					visitados[nodo.hashCode()] = true;
-					cola.add(nodo);
-					
-				}
+		for (Pelicula peli: listaPeliculas.getLista()) {
+			for(Interprete inter: peli.getListaInterpretes().getlista()) {
+				adyacentes.add(inter);	
 			}
 		}
 	return adyacentes;
 	}
-
 }
