@@ -1,20 +1,23 @@
 package fase3;
 
-public class HashMapInterpretes<K, V> {
+import fase1.Interprete;
+import fase2.InterfaceInterpretes;
 
-	Item<K, V>[] tabla;
+public class HashMapInterpretes<String, Interprete> implements InterfaceInterpretes{
+
+	Item<String, fase1.Interprete>[] tabla;
 	int maxsize;
-	Item<K, V> noItem;
+	Item<String, fase1.Interprete> noItem;
 	int size;
 
 	public HashMapInterpretes(int maxsize) {
 		this.maxsize = maxsize;
-		this.tabla = (Item<K, V>[]) new Item[maxsize];
-		this.noItem = new Item<K, V>(null, null);
+		this.tabla = (Item<String, fase1.Interprete>[]) new Item[maxsize];
+		this.noItem = new Item<String, fase1.Interprete>(null, null);
 		this.size = 0;
 	}
 
-	public int hash(K clave) {
+	public int hash(String clave) {
 		return clave.hashCode() % maxsize;
 	}
 
@@ -32,8 +35,8 @@ public class HashMapInterpretes<K, V> {
 		System.out.println("Nº de elementos de la tabla: " + size);
 	}
 
-	public V remove(K clave) {
-		int indice = hash((K) clave);
+	public fase1.Interprete remove(String clave) {
+		int indice = hash((String) clave);
 		boolean encontrado = false;
 		while (!encontrado && tabla[indice] != null) {
 			if (tabla[indice].equals(noItem))
@@ -43,7 +46,7 @@ public class HashMapInterpretes<K, V> {
 			else
 				indice = (indice + 1) % maxsize;
 		}
-		V resultado = null;
+		fase1.Interprete resultado = null;
 		if (encontrado) {
 			resultado = tabla[indice].valor;
 			tabla[indice] = noItem;
@@ -53,7 +56,7 @@ public class HashMapInterpretes<K, V> {
 	}
 
 	// Pre: hay huecos libres
-	public V put(K clave, V valor) {
+	public fase1.Interprete put(String clave, fase1.Interprete valor) {
 		// En caso de que el factor de carga supere el 0,5 habría que redimensionar(no
 		// lo vamos a hacer)
 		int indice = hash(clave);
@@ -70,21 +73,21 @@ public class HashMapInterpretes<K, V> {
 			else
 				indice = (indice + 1) % maxsize;
 		}
-		V resultado = null;
+		fase1.Interprete resultado = null;
 		if (encontrado) {
 			resultado = tabla[indice].valor;
 			tabla[indice].valor = valor;
 		} else {
 			if (reserva != -1)
 				indice = reserva;
-			tabla[indice] = new Item<K, V>(clave, valor);
+			tabla[indice] = new Item<String, fase1.Interprete>(clave, valor);
 			size++;
 		}
 		return resultado;
 	}
 
-	public boolean containsKey(K clave) {
-		int indice = hash((K) clave);
+	public boolean containsKey(String clave) {
+		int indice = hash((String) clave);
 		boolean b = false;
 		while (tabla[indice] != null && !b) {
 			if (tabla[indice].clave.equals(clave)) { // encontrado
@@ -97,11 +100,11 @@ public class HashMapInterpretes<K, V> {
 		}
 		return b;
 	}
-
-	public V get(K clave) {
-		int indice = hash((K) clave);
+@Override
+	public fase1.Interprete buscarInterprete(String nom) {
+		int indice = hash((String) nom);
 		while (tabla[indice] != null) {
-			if (tabla[indice].clave.equals(clave)) {
+			if (tabla[indice].clave.equals(nom)) {
 				return tabla[indice].valor;
 			} else {
 				indice = (indice + 1) % maxsize;
@@ -110,7 +113,7 @@ public class HashMapInterpretes<K, V> {
 		return null;
 	}
 	
-	public V annadirInterpreteHash (K clave, V valor) {
+	public void annadirInterprete (String clave, fase1.Interprete valor) {
 		int indice = hash(clave);
 		boolean encontrado = false;
 		int reserva = -1;
@@ -125,17 +128,34 @@ public class HashMapInterpretes<K, V> {
 		 		else indice = (indice + 1)%maxsize;
 		 	}
 		 	
-		 	V resultado = null;
+		 	fase1.Interprete resultado;
 		 	if(encontrado) {
 		 		resultado = tabla[indice].valor;
 		 		tabla[indice].valor = valor;
 		 	}
 		 	else {
 		 		if(reserva!=-1) indice = reserva;
-		 		tabla[indice]=new Item<K,V>(clave,valor);
+		 		tabla[indice]=new Item<String, fase1.Interprete>(clave,valor);
 		 		size++;
 		 	}
-		return resultado;
+	}
+
+	@Override
+	public void annadirInterprete(java.lang.String string, fase1.Interprete inter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public fase1.Interprete eliminarInterprete(java.lang.String nom) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

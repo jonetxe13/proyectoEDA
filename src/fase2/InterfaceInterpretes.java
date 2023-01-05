@@ -5,8 +5,8 @@ import javax.management.InstanceAlreadyExistsException;
 import fase1.Interprete;
 
 public interface InterfaceInterpretes {
-	public void annadirInterprete(Interprete inter);
-	public Interprete buscarInterprete(String nom);
+	public void annadirInterprete(String string, Interprete inter);
 	public Interprete eliminarInterprete(String nom);
 	public int size();
+	Interprete buscarInterprete(String nom);
 }

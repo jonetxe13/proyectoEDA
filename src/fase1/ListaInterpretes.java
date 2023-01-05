@@ -58,4 +58,10 @@ public class ListaInterpretes implements InterfaceInterpretes{
 	public int size() {
 		return lista.size();
 	}
+
+	@Override
+	public void annadirInterprete(String string, Interprete inter) {
+		// TODO Auto-generated method stub
+		
+	}
 }

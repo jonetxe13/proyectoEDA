@@ -8,6 +8,7 @@ import java.util.Scanner;
 import javax.management.InstanceAlreadyExistsException;
 
 import fase2.ABBInterpretes;
+import fase3.HashMapInterpretes;
 
 
 public class AplicacionIMDB {
@@ -29,10 +30,9 @@ public class AplicacionIMDB {
 				+ "Cargando películas...");
 
 
-
 		long inicio = System.nanoTime();
 
-		catalogo.cargarPeliculas(Path.of("src/data") + "/films.txt");
+		catalogo.cargarPeliculas(Path.of("src/data") + "/films_tiny.txt");
 
 		long terminar = System.nanoTime();
 		System.out.println((terminar - inicio)/1000000);
@@ -42,19 +42,26 @@ public class AplicacionIMDB {
 
 		
 				
-		ABBInterpretes arbol = new ABBInterpretes();
-		catalogo.setInterpretes(arbol);
+//		ABBInterpretes arbol = new ABBInterpretes();
+		HashMapInterpretes<String, Interprete> hashmap = new HashMapInterpretes<>(10);
+		catalogo.setInterpretes(hashmap);
 		
-		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
+	
+
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
 		System.out.println("Cargando interpretes...");
 		long startTime = System.nanoTime();
-		catalogo.cargarInterpretes(Path.of("src/data") + "/cast.txt");
+		catalogo.cargarInterpretes(Path.of("src/data") + "/cast_tiny.txt");
 
 		long endTime = System.nanoTime();
 		System.out.println((endTime - startTime)/1000000);
 		
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoI().size() + " interpretes. \n");
+		
+		// seccion para pruebas *****************************************************************************************************************
+		System.out.println(catalogo.getCatalogoI().buscarInterprete("Laguiller, Arlette"));
+		System.out.println(catalogo.distancia("Laguiller, Arlette", "Powell, Josh (I)"));
+		// fin seccion para pruebas *************************************************************************************************************
 
 		//Men
 		Scanner sc = new Scanner(System.in);

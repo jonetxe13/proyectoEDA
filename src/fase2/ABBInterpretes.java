@@ -71,7 +71,7 @@ public class ABBInterpretes<Interprete extends Comparable<fase1.Interprete>> imp
 	* Añade un intérprete a la lista
 	* @param inter Intérprete a añadir
 	*/
-	@Override
+
 	public void annadirInterprete(fase1.Interprete inter){
 		if (this.isEmpty()) {
 			this.root = new NodoABBInterpretes(inter);
@@ -90,5 +90,11 @@ public class ABBInterpretes<Interprete extends Comparable<fase1.Interprete>> imp
 			return null;
 		else 
 		return this.root.buscarInterprete(nombre);
+	}
+
+	@Override
+	public void annadirInterprete(String string, fase1.Interprete inter) {
+		// TODO Auto-generated method stub
+		
 	}
 }

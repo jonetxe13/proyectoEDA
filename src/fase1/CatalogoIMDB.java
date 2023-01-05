@@ -92,7 +92,8 @@ public class CatalogoIMDB {
 					}
 				}
 				inter.calcularRating();
-				catalogoInterpretes.annadirInterpreteHash(inter.getName(), inter);
+				System.out.println(inter.getName());
+				catalogoInterpretes.annadirInterprete(inter.getName(), inter);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -207,7 +208,9 @@ public class CatalogoIMDB {
 
 		Queue<Interprete> cola = new LinkedList<Interprete>();
 		Interprete inter;
+		System.out.println(catalogoInterpretes.buscarInterprete(inter1));
 		cola.add(catalogoInterpretes.buscarInterprete(inter1));
+		System.out.println(cola.contains(inter1));
 		visitados.put(inter1, 0);
 
 		boolean encontrado = false;
