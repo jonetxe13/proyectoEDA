@@ -19,8 +19,8 @@ public class HashMapInterpretes implements InterfaceInterpretes{
 	}
 
 	public int hash(String clave) {
-		System.out.println(clave.hashCode());
-		return clave.hashCode() % maxsize;
+//		System.out.println(clave.hashCode() % maxsize);
+		return Math.abs(clave.hashCode() % maxsize);
 	}
 
 	public void print() {
@@ -102,73 +102,35 @@ public class HashMapInterpretes implements InterfaceInterpretes{
 		}
 		return b;
 	}
-	
-//	public fase1.Interprete buscarInterprete(String nom) {
-//		int indice = hash((String) nom);
-//		while (tabla[indice] != null) {
-//			if (tabla[indice].clave.equals(nom)) {
-//				return tabla[indice].valor;
-//			} else {
-//				indice = (indice + 1) % maxsize;
-//			}
-//		}
-//		return null;
-//	}
-	
-//	public void annadirInterprete (String clave, fase1.Interprete valor) {
-//		int indice = hash(clave);
-//		boolean encontrado = false;
-//		int reserva = -1;
-//		
-//		 	while(!encontrado && tabla[indice]!=null) {
-//		 		if(tabla[indice].equals(noItem)) {
-//		 			if(reserva==-1) {
-//		 				reserva = indice;
-//		 			}
-//		 			indice = (indice+1)%maxsize;
-//		 		}else if (tabla[indice].clave.equals(clave)) encontrado = true;
-//		 		else indice = (indice + 1)%maxsize;
-//		 	}
-//		 	
-//		 	fase1.Interprete resultado;
-//		 	if(encontrado) {
-//		 		resultado = tabla[indice].valor;
-//		 		tabla[indice].valor = valor;
-//		 	}
-//		 	else {
-//		 		if(reserva!=-1) indice = reserva;
-//		 		tabla[indice]=new Item<String, fase1.Interprete>(clave,valor);
-//		 		size++;
-//		 	}
-//	}
+
 	@Override
 	public void annadirInterprete(String clave, fase1.Interprete valor) {
 		// TODO Auto-generated method stub
 		int indice = hash(clave);
-		System.out.println(indice);
+//		System.out.println(indice);
 		boolean encontrado = false;
 		int reserva = -1;
 		
-		 	while(!encontrado && tabla[indice]!=null) {
-		 		if(tabla[indice].equals(noItem)) {
-		 			if(reserva==-1) {
-		 				reserva = indice;
-		 			}
-		 			indice = (indice+1)%maxsize;
-		 		}else if (tabla[indice].clave.equals(clave)) encontrado = true;
-		 		else indice = (indice + 1)%maxsize;
-		 	}
-		 	
-		 	fase1.Interprete resultado;
-		 	if(encontrado) {
-		 		resultado = tabla[indice].valor;
-		 		tabla[indice].valor = valor;
-		 	}
-		 	else {
-		 		if(reserva!=-1) indice = reserva;
-		 		tabla[indice]=new Item<String, fase1.Interprete>(clave,valor);
-		 		size++;
-		 	}
+	 	while(!encontrado && tabla[indice]!=null) {
+	 		if(tabla[indice].equals(noItem)) {
+	 			if(reserva==-1) {
+	 				reserva = indice;
+	 			}
+	 			indice = (indice+1)%maxsize;
+	 		}else if (tabla[indice].clave.equals(clave)) encontrado = true;
+	 		else indice = (indice + 1)%maxsize;
+	 	}
+	 	
+	 	fase1.Interprete resultado;
+	 	if(encontrado) {
+	 		resultado = tabla[indice].valor;
+	 		tabla[indice].valor = valor;
+	 	}
+	 	else {
+	 		if(reserva!=-1) indice = reserva;
+	 		tabla[indice]=new Item<String, fase1.Interprete>(clave,valor);
+	 		size++;
+	 	}
 		
 	}
 

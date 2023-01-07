@@ -60,8 +60,9 @@ public class AplicacionIMDB {
 		
 		
 		// seccion para pruebas *****************************************************************************************************************
-//		System.out.println(catalogo.getCatalogoI().buscarInterprete("Laguiller, Arlette"));
+		System.out.println(catalogo.getCatalogoI().buscarInterprete("Laguiller, Arlette"));
 		System.out.println(catalogo.distancia("Laguiller, Arlette", "Powell, Josh (I)"));
+		catalogo.imprimirCamino("Laguiller, Arlette", "Powell, Josh (I)");
 		// fin seccion para pruebas *************************************************************************************************************
 
 		//Men

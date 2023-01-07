@@ -207,9 +207,10 @@ public class CatalogoIMDB {
 
 		Queue<Interprete> cola = new LinkedList<Interprete>();
 		Interprete inter;
-		System.out.println(catalogoInterpretes.buscarInterprete(inter1));
+//		System.out.println(catalogoInterpretes.buscarInterprete(inter1));
+//		System.out.println(catalogoInterpretes.buscarInterprete(inter2));
 		cola.add(catalogoInterpretes.buscarInterprete(inter1));
-		System.out.println(cola.contains(inter1));
+//		System.out.println(cola.peek());
 		visitados.put(inter1, 0);
 
 		boolean encontrado = false;
