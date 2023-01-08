@@ -19,7 +19,6 @@ public class HashMapInterpretes implements InterfaceInterpretes{
 	}
 
 	public int hash(String clave) {
-//		System.out.println(clave.hashCode() % maxsize);
 		return Math.abs(clave.hashCode() % maxsize);
 	}
 

@@ -78,6 +78,6 @@ public class Interprete{
 				adyacentes.add(inter);	
 			}
 		}
-	return adyacentes;
+		return adyacentes;
 	}
 }

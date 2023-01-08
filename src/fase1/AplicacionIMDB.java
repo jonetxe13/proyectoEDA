@@ -32,7 +32,7 @@ public class AplicacionIMDB {
 
 		long inicio = System.nanoTime();
 
-		catalogo.cargarPeliculas(Path.of("src/data") + "/films_tiny.txt");
+		catalogo.cargarPeliculas(Path.of("src/data") + "/films_small.txt");
 
 		long terminar = System.nanoTime();
 		System.out.println((terminar - inicio)/1000000);
@@ -43,7 +43,7 @@ public class AplicacionIMDB {
 		
 				
 //		ABBInterpretes arbol = new ABBInterpretes();
-		HashMapInterpretes hashmap = new HashMapInterpretes(100000);
+		HashMapInterpretes hashmap = new HashMapInterpretes(3000000);
 		catalogo.setInterpretes(hashmap);
 		
 	
@@ -51,7 +51,7 @@ public class AplicacionIMDB {
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
 		System.out.println("Cargando interpretes...");
 		long startTime = System.nanoTime();
-		catalogo.cargarInterpretes(Path.of("src/data") + "/cast_tiny.txt");
+		catalogo.cargarInterpretes(Path.of("src/data") + "/cast_small.txt");
 
 		long endTime = System.nanoTime();
 		System.out.println((endTime - startTime)/1000000);
@@ -60,9 +60,10 @@ public class AplicacionIMDB {
 		
 		
 		// seccion para pruebas *****************************************************************************************************************
-		System.out.println(catalogo.getCatalogoI().buscarInterprete("Laguiller, Arlette"));
+		System.out.println(catalogo.getCatalogoI().buscarInterprete("Laguiller, Arlette").getName());
 		System.out.println(catalogo.distancia("Laguiller, Arlette", "Powell, Josh (I)"));
-		catalogo.imprimirCamino("Laguiller, Arlette", "Powell, Josh (I)");
+		catalogo.imprimirCamino("Powell, Josh (I)", "Burgos, Gilberto");
+//		System.out.println(catalogo.getCatalogoI().buscarInterprete("Powell, Josh (I)").obtenerAdyacentes().contains(catalogo.getCatalogoI().buscarInterprete("Burgos, Gilberto")));
 		// fin seccion para pruebas *************************************************************************************************************
 
 		//Men
