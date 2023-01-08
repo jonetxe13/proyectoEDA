@@ -268,7 +268,10 @@ public class CatalogoIMDB {
 		}
 		if (encontrado) {
 			visitados.add(inter2);
+			System.out.println(visitados);
 		}
-		System.out.println(visitados);
+		else {
+			System.out.println("No existe el camino entre esos dos interpretes");
+		}
 	}
 }

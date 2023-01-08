@@ -17,15 +17,6 @@ public class AplicacionIMDB {
 		CatalogoIMDB catalogo = new CatalogoIMDB();
 	    //TO DO: Cargar pelculas	
 
-//		System.out.println(arbol);
-//		System.out.println(arbol.buscarInterprete("Runco, David").getName());
-//		arbol.annadirInterprete(catalogo.getCatalogoI().buscarInterprete("Alfonso, Martin"));
-//
-//		System.out.println(arbol.getRoot().getInfo().getName());
-//		System.out.println(arbol.getRoot().getLeft().getInfo().getName());
-//		System.out.println(arbol.getRoot().getRight());
-//		System.out.println(arbol.buscarInterprete("Alfonso, Martin").getName());
-
 		System.out.println("¡Bienvenid@ a la aplicación de IMDB!\n"
 				+ "Cargando películas...");
 
@@ -41,12 +32,9 @@ public class AplicacionIMDB {
 		System.out.println("Cargando interpretes...");
 
 		
-				
-//		ABBInterpretes arbol = new ABBInterpretes();
 		HashMapInterpretes hashmap = new HashMapInterpretes(3000000);
 		catalogo.setInterpretes(hashmap);
 		
-	
 
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
 		System.out.println("Cargando interpretes...");
@@ -60,9 +48,9 @@ public class AplicacionIMDB {
 		
 		
 		// seccion para pruebas *****************************************************************************************************************
-		System.out.println(catalogo.getCatalogoI().buscarInterprete("Laguiller, Arlette").getName());
-		System.out.println(catalogo.distancia("Laguiller, Arlette", "Powell, Josh (I)"));
-		catalogo.imprimirCamino("Powell, Josh (I)", "Burgos, Gilberto");
+//		System.out.println(catalogo.getCatalogoI().buscarInterprete("Laguiller, Arlette").getName());
+//		System.out.println(catalogo.distancia("Laguiller, Arlette", "Powell, Josh (I)"));
+//		catalogo.imprimirCamino("Powell, Josh (I)", "Burgos, Gilberto");
 //		System.out.println(catalogo.getCatalogoI().buscarInterprete("Powell, Josh (I)").obtenerAdyacentes().contains(catalogo.getCatalogoI().buscarInterprete("Burgos, Gilberto")));
 		// fin seccion para pruebas *************************************************************************************************************
 
@@ -77,6 +65,8 @@ public class AplicacionIMDB {
 			System.out.println("  2. Mostrar informacion de interprete");
 			System.out.println("  3. Anadir voto a pelicula");
 			System.out.println("  4. Eliminar pelicula");
+			System.out.println("  5. Distancia entre dos interpretes");
+			System.out.println("  6. Obtener camino mas corto entre dos interpretes");
 			System.out.println("  0. Salir");
 			
 			opcion = Integer.parseInt(sc.nextLine());
@@ -111,6 +101,19 @@ public class AplicacionIMDB {
 				   System.out.println("Introduzca el titulo de una pelicula: \n");
 				   catalogo.eliminarPelicula(sc.nextLine());
 				   System.out.println("En el catalogo quedan " + catalogo.getCatalogoP().tamanio() + " y " + catalogo.getCatalogoI().size() + " interpretes. \n");
+				   break;
+			   case 5: 
+				   System.out.println("Introduzca el nombre de dos interpretes: \n");
+				   String inter1 = sc.nextLine();
+				   String inter2 = sc.nextLine();
+				   System.out.println(catalogo.distancia(inter1, inter2));
+				   break;
+			   case 6: 
+				   System.out.println("Introduzca el nombre de dos interpretes: \n");
+				   String inter3 = sc.nextLine();
+				   String inter4 = sc.nextLine();
+				   catalogo.imprimirCamino(inter3, inter4);
+				   break;
 			   case 0:
 				   System.out.println("Cerrando... ");
 				   break;
@@ -118,8 +121,6 @@ public class AplicacionIMDB {
 			
 		}
 		sc.close();
-		
-
 	}
 
 }
