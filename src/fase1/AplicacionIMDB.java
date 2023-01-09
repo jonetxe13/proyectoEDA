@@ -49,9 +49,9 @@ public class AplicacionIMDB {
 		
 		// seccion para pruebas *****************************************************************************************************************
 //		System.out.println(catalogo.getCatalogoI().buscarInterprete("Laguiller, Arlette").getName());
-//		System.out.println(catalogo.distancia("Laguiller, Arlette", "Powell, Josh (I)"));
-//		catalogo.imprimirCamino("Powell, Josh (I)", "Burgos, Gilberto");
-//		System.out.println(catalogo.getCatalogoI().buscarInterprete("Powell, Josh (I)").obtenerAdyacentes().contains(catalogo.getCatalogoI().buscarInterprete("Burgos, Gilberto")));
+		System.out.println(catalogo.distancia("Laguiller, Arlette", "Powell, Josh (I)"));
+		catalogo.imprimirCamino("Powell, Josh (I)", "Burgos, Gilberto");
+		System.out.println(catalogo.getCatalogoI().buscarInterprete("Powell, Josh (I)").obtenerAdyacentes().contains(catalogo.getCatalogoI().buscarInterprete("Burgos, Gilberto")));
 		// fin seccion para pruebas *************************************************************************************************************
 
 		//Men
