@@ -29,32 +29,32 @@ public class HashMapInterpretes<K, V> {
 			} else
 				System.out.println(i + ": null");
 		}
-		System.out.println("Nº de elementos de la tabla: " + size);
+		System.out.println("Nï¿½ de elementos de la tabla: " + size);
 	}
 
-	public V remove(K clave) {
-		int indice = hash((K) clave);
-		boolean encontrado = false;
-		while (!encontrado && tabla[indice] != null) {
-			if (tabla[indice].equals(noItem))
-				indice = (indice + 1) % maxsize;
-			else if (tabla[indice].clave.equals(clave))
-				encontrado = true;
-			else
-				indice = (indice + 1) % maxsize;
-		}
-		V resultado = null;
-		if (encontrado) {
-			resultado = tabla[indice].valor;
-			tabla[indice] = noItem;
-			size--;
-		}
-		return resultado;
-	}
+//	public V remove(K clave) {
+//		int indice = hash((K) clave);
+//		boolean encontrado = false;
+//		while (!encontrado && tabla[indice] != null) {
+//			if (tabla[indice].equals(noItem))
+//				indice = (indice + 1) % maxsize;
+//			else if (tabla[indice].clave.equals(clave))
+//				encontrado = true;
+//			else
+//				indice = (indice + 1) % maxsize;
+//		}
+//		V resultado = null;
+//		if (encontrado) {
+//			resultado = tabla[indice].valor;
+//			tabla[indice] = noItem;
+//			size--;
+//		}
+//		return resultado;
+//	}
 
 	// Pre: hay huecos libres
 	public V put(K clave, V valor) {
-		// En caso de que el factor de carga supere el 0,5 habría que redimensionar(no
+		// En caso de que el factor de carga supere el 0,5 habrï¿½a que redimensionar(no
 		// lo vamos a hacer)
 		int indice = hash(clave);
 		boolean encontrado = false;
@@ -98,17 +98,17 @@ public class HashMapInterpretes<K, V> {
 		return b;
 	}
 
-	public V get(K clave) {
-		int indice = hash((K) clave);
-		while (tabla[indice] != null) {
-			if (tabla[indice].clave.equals(clave)) {
-				return tabla[indice].valor;
-			} else {
-				indice = (indice + 1) % maxsize;
-			}
-		}
-		return null;
-	}
+//	public V get(K clave) {
+//		int indice = hash((K) clave);
+//		while (tabla[indice] != null) {
+//			if (tabla[indice].clave.equals(clave)) {
+//				return tabla[indice].valor;
+//			} else {
+//				indice = (indice + 1) % maxsize;
+//			}
+//		}
+//		return null;
+//	}
 	
 	public V annadirInterpreteHash (K clave, V valor) {
 		int indice = hash(clave);

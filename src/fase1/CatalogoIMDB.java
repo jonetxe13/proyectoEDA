@@ -116,7 +116,7 @@ public class CatalogoIMDB {
 			}
 			System.out.println(resultado);
 		} else {
-			System.out.println("¡ERROR!");
+			System.out.println("ï¿½ERROR!");
 			System.out.println("La pelicula " + titulo + " no se encuentra.");
 		}
 	}
@@ -138,7 +138,7 @@ public class CatalogoIMDB {
 			}
 			System.out.println(resultado);
 		} else {
-			System.out.println("¡ERROR!");
+			System.out.println("ï¿½ERROR!");
 			System.out.println("El interprete no se encuentra.");
 		}
 	}
@@ -156,26 +156,26 @@ public class CatalogoIMDB {
 			System.out.println(
 					"El nuevo rating de la pelicula es: " + catalogoPeliculas.buscarPelicula(titulo).getRating());
 		} else {
-			System.out.println("¡ERROR!");
+			System.out.println("ï¿½ERROR!");
 			System.out.println("El voto no es valido.");
 		}
 	}
 
 	/**
-	 * Inicializa el conjunto de intérpretes del catálogo con el conjunto de
-	 * intérpretes que se le pasa como parámetro
+	 * Inicializa el conjunto de intï¿½rpretes del catï¿½logo con el conjunto de
+	 * intï¿½rpretes que se le pasa como parï¿½metro
 	 * 
-	 * @param intérpretes: conjunto de intérpretes
+	 * @param intï¿½rpretes: conjunto de intï¿½rpretes
 	 */
 	public void setInterpretes(InterfaceInterpretes interpretes) {
 		this.catalogoInterpretes = interpretes;
 	}
 
 	/**
-	 * Elimina del catálogo la película cuyo título se pasa como parámetro. Además,
-	 * elimina la película de la lista de películas de cada uno de los intérpretes
-	 * de dicha película. Aquellos intérpretes que se quedan sin películas son
-	 * eliminados del catálogo, y al resto se les actualiza el rating.
+	 * Elimina del catï¿½logo la pelï¿½cula cuyo tï¿½tulo se pasa como parï¿½metro. Ademï¿½s,
+	 * elimina la pelï¿½cula de la lista de pelï¿½culas de cada uno de los intï¿½rpretes
+	 * de dicha pelï¿½cula. Aquellos intï¿½rpretes que se quedan sin pelï¿½culas son
+	 * eliminados del catï¿½logo, y al resto se les actualiza el rating.
 	 **/
 	public Pelicula eliminarPelicula(String titulo) {
 
@@ -183,10 +183,8 @@ public class CatalogoIMDB {
 		ListaInterpretes interpretes = pel.getListaInterpretes();
 
 		for (Interprete inter : interpretes.getlista()) {
-			this.catalogoInterpretes.buscarInterprete(inter.getName()).getListaPeliculas().eliminarPelicula(pel);
-			if (inter.getListaPeliculas() == null) {
-				this.catalogoInterpretes.eliminarInterprete(inter.getName());
-			}
+			inter.getListaPeliculas().eliminarPelicula(pel);
+			this.catalogoInterpretes.eliminarInterprete(inter.getName());
 		}
 		this.catalogoPeliculas.eliminarPelicula(pel);
 
@@ -194,11 +192,11 @@ public class CatalogoIMDB {
 	}
 
 	/**
-	 * Devuelve la distancia mínima entre dos intérpretes dados.
+	 * Devuelve la distancia mï¿½nima entre dos intï¿½rpretes dados.
 	 * 
-	 * @param inter1: nombre del primer intérprete
-	 * @param inter2: nombre del segundo intérprete
-	 * @return: distancia mínima entre ambos intérpretes. En caso de que no estén
+	 * @param inter1: nombre del primer intï¿½rprete
+	 * @param inter2: nombre del segundo intï¿½rprete
+	 * @return: distancia mï¿½nima entre ambos intï¿½rpretes. En caso de que no estï¿½n
 	 *          conectados, devuelve -1.
 	 */
 	public int distancia(String inter1, String inter2) {
@@ -233,11 +231,11 @@ public class CatalogoIMDB {
 	}
 
 	/**
-	 * Imprime el camino más corto entre dos intérpretes. Si no existe camino,
+	 * Imprime el camino mï¿½s corto entre dos intï¿½rpretes. Si no existe camino,
 	 * imprime un mensaje indicando este hecho.
 	 * 
-	 * @param inter1: nombre del primer intérprete
-	 * @param inter2: nombre del segundo intérprete
+	 * @param inter1: nombre del primer intï¿½rprete
+	 * @param inter2: nombre del segundo intï¿½rprete
 	 */
 	public void imprimirCamino(String inter1, String inter2) {
 
