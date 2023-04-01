@@ -1,0 +1,14 @@
+-----------------------------------------
+File        -> N. of lines
+-----------------------------------------
+films.txt  -> 692.086
+cast.txt   -> 2.792.969
+
+films_medium.txt -> 100.000
+cast_medium.txt: -> 715.781
+
+films_small.txt -> 10.000
+cast_small.txt  -> 123.598
+
+films_tiny.txt  -> 1.000
+cast_tiny.txt   -> 14.024
