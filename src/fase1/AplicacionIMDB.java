@@ -16,17 +16,8 @@ public class AplicacionIMDB {
 		CatalogoIMDB catalogo = new CatalogoIMDB();
 	    //TO DO: Cargar pelculas	
 
-//		System.out.println(arbol);
-//		System.out.println(arbol.buscarInterprete("Runco, David").getName());
-//		arbol.annadirInterprete(catalogo.getCatalogoI().buscarInterprete("Alfonso, Martin"));
-//
-//		System.out.println(arbol.getRoot().getInfo().getName());
-//		System.out.println(arbol.getRoot().getLeft().getInfo().getName());
-//		System.out.println(arbol.getRoot().getRight());
-//		System.out.println(arbol.buscarInterprete("Alfonso, Martin").getName());
-
-		System.out.println("¡Bienvenid@ a la aplicación de IMDB!\n"
-				+ "Cargando películas...");
+		System.out.println("ï¿½Bienvenid@ a la aplicaciï¿½n de IMDB!\n"
+				+ "Cargando pelï¿½culas...");
 
 
 
@@ -55,6 +46,11 @@ public class AplicacionIMDB {
 		System.out.println((endTime - startTime)/1000000);
 		
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoI().size() + " interpretes. \n");
+		
+		// esto no vaaa************
+		
+		catalogo.imprimirCamino("Lockwood, Melinda", "McConnell, Claudia (I)");
+		// esto no vaaa************
 
 		//Men
 		Scanner sc = new Scanner(System.in);
@@ -92,7 +88,7 @@ public class AplicacionIMDB {
 				      catalogo.anadirVoto(peli, voto);
 				   	}
 				   else{
-					   System.out.println("¡ERROR!");
+					   System.out.println("ï¿½ERROR!");
 					   System.out.println("La pelicula no se encuentra en el catalogo");
 				   }
 				   break;
