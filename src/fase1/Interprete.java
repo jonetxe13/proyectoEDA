@@ -64,16 +64,33 @@ public class Interprete{
 	}
 	
 	public HashSet<Interprete> obtenerAdyacentes() { //recorrido por anchura
-		Interprete nodo;
-		Integer i;
-		
 		HashSet<Interprete> adyacentes = new HashSet<Interprete>();
-		
-		for (Pelicula peli: listaPeliculas.getLista()) {
-			for(Interprete inter: peli.getListaInterpretes().getlista()) {
-				adyacentes.add(inter);	
+		Queue<Interprete> cola = new LinkedList<Interprete>();
+		Interprete aux;
+		cola.add(this);
+		while(!cola.isEmpty()) {
+			aux = cola.remove();
+			for(int i = 0; i < aux.listaPeliculas.getLista().size(); i++) {
+				for(int j = 0; j < aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().size(); j++) {
+					if(!aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j).equals(aux)) {
+						adyacentes.add(aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j));
+						cola.add(aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j));
+					}
+				}
 			}
 		}
 		return adyacentes;
+
+		// Interprete nodo;
+		// Integer i;
+		
+		// HashSet<Interprete> adyacentes = new HashSet<Interprete>();
+		
+		// for (Pelicula peli: listaPeliculas.getLista()) {
+		// 	for(Interprete inter: peli.getListaInterpretes().getlista()) {
+		// 		adyacentes.add(inter);	
+		// 	}
+		// }
+		// return adyacentes;
 	}
 }

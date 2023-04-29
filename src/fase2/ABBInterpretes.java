@@ -15,8 +15,8 @@ public class ABBInterpretes implements InterfaceInterpretes {
 	}
 	
 	/**
-	* Devuelve si el árbol binario está vacío o no
-	* @return un booleano, true si esta vacío o false si no lo está
+	* Devuelve si el ï¿½rbol binario estï¿½ vacï¿½o o no
+	* @return un booleano, true si esta vacï¿½o o false si no lo estï¿½
 	*/
 	public boolean isEmpty() {
 		return this.root == null;
@@ -31,7 +31,7 @@ public class ABBInterpretes implements InterfaceInterpretes {
 	}
 	
 	/**
-	* Elimina el nodo mas pequeño
+	* Elimina el nodo mas pequeï¿½o
 	* @return el valor del nodo
 	*/
 	public Interprete removeMin() {
@@ -44,9 +44,9 @@ public class ABBInterpretes implements InterfaceInterpretes {
 	}
 	
 	/**
-	* Elimina un intérprete del árbol (puede seguir estando en las listas de
-	* intérpretes de las películas)
-	* @param nombre Nombre del intérprete a eliminar
+	* Elimina un intï¿½rprete del ï¿½rbol (puede seguir estando en las listas de
+	* intï¿½rpretes de las pelï¿½culas)
+	* @param nombre Nombre del intï¿½rprete a eliminar
 	* @return el Interprete (si se ha eliminado), null en caso contrario
 	*/
 	public Interprete eliminarInterprete(String nombre) {
@@ -58,18 +58,19 @@ public class ABBInterpretes implements InterfaceInterpretes {
 	}
 	
 	/**
-	* Devuelve el nº de elementos del árbol.
-	* @return nº de elementos del árbol
+	* Devuelve el nï¿½ de elementos del ï¿½rbol.
+	* @return nï¿½ de elementos del ï¿½rbol
 	*/
-	public int size() {
+	public int size(){
 		if(!this.isEmpty()) {
 			return this.root.size(0);
 		}
-		return -1;
+		return 0;
 	}
+
 	/**
-	* Añade un intérprete a la lista
-	* @param inter Intérprete a añadir
+	* Aï¿½ade un intï¿½rprete a la lista
+	* @param inter Intï¿½rprete a aï¿½adir
 	*/
 	@Override
 	public void annadirInterprete(Interprete inter){
@@ -81,9 +82,9 @@ public class ABBInterpretes implements InterfaceInterpretes {
 		}
 	}
 	/**
-	* Busca un intérprete en la lista y lo devuelve
-	* @param nombre Nombre del intérprete a buscar
-	* @return el Interprete (si está en la lista), null en caso contrario
+	* Busca un intï¿½rprete en la lista y lo devuelve
+	* @param nombre Nombre del intï¿½rprete a buscar
+	* @return el Interprete (si estï¿½ en la lista), null en caso contrario
 	*/
 	public Interprete buscarInterprete(String nombre) {
 		if (this.isEmpty())

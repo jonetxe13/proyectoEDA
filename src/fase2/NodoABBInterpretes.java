@@ -33,9 +33,9 @@ public class NodoABBInterpretes {
 		return null != this.right;
 	}
 	/**
-	* Busca un intérprete en la lista y lo devuelve
-	* @param nombre Nombre del intérprete a buscar
-	* @return el Interprete (si está en la lista), null en caso contrario
+	* Busca un intï¿½rprete en la lista y lo devuelve
+	* @param nombre Nombre del intï¿½rprete a buscar
+	* @return el Interprete (si estï¿½ en la lista), null en caso contrario
 	*/
 	public Interprete buscarInterprete(String nombre) {
 //		System.out.println(nombre.compareTo(this.info.getName()));
@@ -59,8 +59,8 @@ public class NodoABBInterpretes {
 	}
 	
 	/**
-	* Añade un intérprete a la lista
-	* @param inter Intérprete a añadir
+	* Aï¿½ade un intï¿½rprete a la lista
+	* @param inter Intï¿½rprete a aï¿½adir
 	*/
 	public void annadirInterprete(Interprete inter) {
 //		System.out.println(inter.compareTo(this.info));
@@ -69,23 +69,23 @@ public class NodoABBInterpretes {
 			 
 			 else this.left = new NodoABBInterpretes(inter);
 		}
-		else { //elem debe ir después que el actual
+		else { //elem debe ir despuï¿½s que el actual
 			 if (this.hasRight()) this.right.annadirInterprete(inter);
 			 else this.right = new NodoABBInterpretes(inter);
 		}
 
 	}
 	/**
-	* Elimina el nodo mas pequeño
+	* Elimina el nodo mas pequeï¿½o
 	* @return el valor del nodo
 	*/
 	public ResultadoRemoveMin removeMin() {
 		 ResultadoRemoveMin resul = new ResultadoRemoveMin();
 		 
-		 if(!this.hasLeft()) {//El mínimo es el actual
+		 if(!this.hasLeft()) {//El mï¿½nimo es el actual
 			 resul.elValor = this.info;
 		 	resul.elNodo = this.right;
-		 }else { //El mínimo está en el subárbol izquierdo
+		 }else { //El mï¿½nimo estï¿½ en el subï¿½rbol izquierdo
 			 ResultadoRemoveMin resulLeft = this.left.removeMin();
 			 this.left = resulLeft.elNodo;
 			 resul.elValor = resulLeft.elValor;
@@ -95,9 +95,9 @@ public class NodoABBInterpretes {
 	}
 	
 	/**
-	* Elimina un intérprete del árbol (puede seguir estando en las listas de
-	* intérpretes de las películas)
-	* @param nombre Nombre del intérprete a eliminar
+	* Elimina un intï¿½rprete del ï¿½rbol (puede seguir estando en las listas de
+	* intï¿½rpretes de las pelï¿½culas)
+	* @param nombre Nombre del intï¿½rprete a eliminar
 	* @return el Interprete (si se ha eliminado), null en caso contrario
 	*/
 	public Interprete eliminarInterprete(String nombre){
@@ -106,36 +106,43 @@ public class NodoABBInterpretes {
 		if(comp==0) {//Caso (a): this es el nodo a eliminar
 			if(!this.hasLeft()) return this.right.info; //Caso (a1)
 			else if(!this.hasRight()) return this.left.info; //Caso (a2)
-			else {//Caso (a3): Tiene los dos subarboles, sustituir por el valor mínimo del subarbol derecho
+			else {//Caso (a3): Tiene los dos subarboles, sustituir por el valor mï¿½nimo del subarbol derecho
 				ResultadoRemoveMin min = this.right.removeMin();
 				this.right = min.elNodo;
 				this.info = min.elValor;
 				return this.info;
 			}
 		}
-		else if(comp<0){//Caso (b) El elemento a eliminar, si está, estará en el subárbol izq
+		else if(comp<0){//Caso (b) El elemento a eliminar, si estï¿½, estarï¿½ en el subï¿½rbol izq
 			 if(this.hasLeft()) this.left.info = this.left.eliminarInterprete(nombre);
 			 return this.info;
 			
-		}else {//comp>0: Caso (c) El elemento a eliminar, si está, estará en el subárbol dcho
+		}else {//comp>0: Caso (c) El elemento a eliminar, si estï¿½, estarï¿½ en el subï¿½rbol dcho
 			 if (this.hasRight()) this.right.info = this.right.eliminarInterprete(nombre);
 			 return this.info;
 		}
 	}
 
 	/**
-	* Devuelve el nº de elementos del árbol.
-	* @return nº de elementos del árbol
+	* Devuelve el nï¿½ de elementos del ï¿½rbol.
+	* @return nï¿½ de elementos del ï¿½rbol
 	*/
 	public int size(int nivel) {
-		
-		nivel++;
 		if(this.hasLeft()) {
-			return this.left.size(nivel);
+			return this.left.size(nivel+1);
 		}
 		if(this.hasRight()) {
-			return this.right.size(nivel);
+			return this.right.size(nivel+1);
 		}
 		return nivel;
+		
+		// nivel++;
+		// if(this.hasLeft()) {
+		// 	return this.left.size(nivel);
+		// }
+		// if(this.hasRight()) {
+		// 	return this.right.size(nivel);
+		// }
+		// return nivel;
 	}
 }

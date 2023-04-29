@@ -238,32 +238,67 @@ public class CatalogoIMDB {
 	 * @param inter2: nombre del segundo int�rprete
 	 */
 	public void imprimirCamino(String inter1, String inter2) {
-
-		HashSet<String> visitados = new HashSet<String>();
+		
+		HashMap<String, String> visitados = new HashMap<String, String>();
 
 		Queue<Interprete> cola = new LinkedList<Interprete>();
 		Interprete inter;
-
 		cola.add(catalogoInterpretes.buscarInterprete(inter1));
-		visitados.add(inter1);
+		visitados.put(inter1, null);
 
 		boolean encontrado = false;
+
 		while (!cola.isEmpty() && !encontrado) {
 			inter = cola.remove();
+
 			if (inter.getName().equals(inter2))
 				encontrado = true;
 			else {
 				for (Interprete aux : inter.obtenerAdyacentes()) {
-					if (!visitados.contains(aux.getName())) {
+					if (!visitados.containsKey(aux.getName())) {
 						cola.add(aux);
-						visitados.add(aux.getName());
+						visitados.put(aux.getName(), inter.getName());
 					}
 				}
 			}
 		}
 		if (encontrado) {
-			visitados.add(inter2);
-		}
-		System.out.println(visitados);
+			String camino = "";
+			String aux = inter2;
+			while (aux != null) {
+				camino = aux + " " + camino;
+				aux = visitados.get(aux);
+			}
+			System.out.println(camino);
+		} else
+			System.out.println("No existe camino entre los interpretes");
 	}
+
+	// 	HashSet<String> visitados = new HashSet<String>();
+
+	// 	Queue<Interprete> cola = new LinkedList<Interprete>();
+	// 	Interprete inter;
+
+	// 	cola.add(catalogoInterpretes.buscarInterprete(inter1));
+	// 	visitados.add(inter1);
+
+	// 	boolean encontrado = false;
+	// 	while (!cola.isEmpty() && !encontrado) {
+	// 		inter = cola.remove();
+	// 		if (inter.getName().equals(inter2))
+	// 			encontrado = true;
+	// 		else {
+	// 			for (Interprete aux : inter.obtenerAdyacentes()) {
+	// 				if (!visitados.contains(aux.getName())) {
+	// 					cola.add(aux);
+	// 					visitados.add(aux.getName());
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// 	if (encontrado) {
+	// 		visitados.add(inter2);
+	// 	}
+	// 	System.out.println(visitados);
+	// }
 }
