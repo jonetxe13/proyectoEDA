@@ -8,6 +8,7 @@ import java.util.Scanner;
 import javax.management.InstanceAlreadyExistsException;
 
 import fase2.ABBInterpretes;
+import fase2.NodoABBInterpretes;
 
 
 public class AplicacionIMDB {
@@ -26,24 +27,20 @@ public class AplicacionIMDB {
 		catalogo.cargarPeliculas(Path.of("src/data") + "/films_tiny.txt");
 
 		long terminar = System.nanoTime();
-		System.out.println((terminar - inicio)/1000000);
-		
-		
-		System.out.println("Cargando interpretes...");
-
-		
+		System.out.println(((terminar - inicio)/1000000) + " ms");
+			
 				
 		ABBInterpretes arbol = new ABBInterpretes();
 		catalogo.setInterpretes(arbol);
 		
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
-		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
+		//System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
 		System.out.println("Cargando interpretes...");
 		long startTime = System.nanoTime();
 		catalogo.cargarInterpretes(Path.of("src/data") + "/cast_tiny.txt");
 
 		long endTime = System.nanoTime();
-		System.out.println((endTime - startTime)/1000000);
+		System.out.println(((endTime - startTime)/1000000) + " ms");
 		
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoI().size() + " interpretes. \n");
 		

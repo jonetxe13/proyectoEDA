@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.management.InstanceAlreadyExistsException;
 
 import fase2.InterfaceInterpretes;
+import fase2.NodoABBInterpretes;
 
 public class ListaInterpretes implements InterfaceInterpretes{
 	private ArrayList<Interprete> lista;
@@ -22,8 +23,8 @@ public class ListaInterpretes implements InterfaceInterpretes{
 	}
 
 	/**
-	* Añade un intérprete a la lista
-	* @param inter Intérprete a añadir
+	* Aï¿½ade un intï¿½rprete a la lista
+	* @param inter Intï¿½rprete a aï¿½adir
 	*/
 	public void annadirInterprete(Interprete inter){
 				lista.add(inter);
@@ -42,8 +43,8 @@ public class ListaInterpretes implements InterfaceInterpretes{
 	}
 
 	/**
-	* Devuelve el tamaño de la lista
-	* @return un entero con el tamaño
+	* Devuelve el tamaï¿½o de la lista
+	* @return un entero con el tamaï¿½o
 	*/
 	public int tamanio(){
 	    return lista.size();
@@ -57,5 +58,9 @@ public class ListaInterpretes implements InterfaceInterpretes{
 	@Override
 	public int size() {
 		return lista.size();
+	}
+	
+	public int sizeI(NodoABBInterpretes root) {
+		return 0;
 	}
 }

@@ -61,11 +61,27 @@ public class ABBInterpretes implements InterfaceInterpretes {
 	* Devuelve el n� de elementos del �rbol.
 	* @return n� de elementos del �rbol
 	*/
-	public int size(){
-		if(!this.isEmpty()) {
-			return this.root.size(0);
-		}
-		return 0;
+    public int size() {
+        return size(root);
+    }
+
+    // método privado auxiliar para calcular el tamaño del árbol
+    private int size(NodoABBInterpretes node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + size(node.getLeft()) + size(node.getRight());
+    }
+	
+	
+	public int sizeI(NodoABBInterpretes root) {
+	    if (this.root == null) { // si la raiz es nula, el árbol está vacío
+	        return 0;
+	    } else {
+	        int numIzq = sizeI(this.root.getLeft()); // contamos los nodos del subárbol izquierdo
+	        int numDer = sizeI(this.root.getRight()); // contamos los nodos del subárbol derecho
+	        return 1 + numIzq + numDer; // sumamos la raiz y los nodos de ambos subárboles
+	    }
 	}
 
 	/**

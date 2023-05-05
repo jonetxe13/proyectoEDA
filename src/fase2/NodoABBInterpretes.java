@@ -127,22 +127,11 @@ public class NodoABBInterpretes {
 	* Devuelve el n� de elementos del �rbol.
 	* @return n� de elementos del �rbol
 	*/
-	public int size(int nivel) {
-		if(this.hasLeft()) {
-			return this.left.size(nivel+1);
-		}
-		if(this.hasRight()) {
-			return this.right.size(nivel+1);
-		}
-		return nivel;
-		
-		// nivel++;
-		// if(this.hasLeft()) {
-		// 	return this.left.size(nivel);
-		// }
-		// if(this.hasRight()) {
-		// 	return this.right.size(nivel);
-		// }
-		// return nivel;
-	}
+
+//	private int size(Node node) {
+//	    if (node == null) {
+//	        return 0;
+//	    }
+//	    return 1 + size(node.getLeft()) + size(node.getRight());
+//	}
 }
