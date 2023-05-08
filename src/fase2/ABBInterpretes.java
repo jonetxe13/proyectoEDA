@@ -72,18 +72,8 @@ public class ABBInterpretes implements InterfaceInterpretes {
         }
         return 1 + size(node.getLeft()) + size(node.getRight());
     }
-	
-	
-	public int sizeI(NodoABBInterpretes root) {
-	    if (this.root == null) { // si la raiz es nula, el árbol está vacío
-	        return 0;
-	    } else {
-	        int numIzq = sizeI(this.root.getLeft()); // contamos los nodos del subárbol izquierdo
-	        int numDer = sizeI(this.root.getRight()); // contamos los nodos del subárbol derecho
-	        return 1 + numIzq + numDer; // sumamos la raiz y los nodos de ambos subárboles
-	    }
-	}
 
+    
 	/**
 	* A�ade un int�rprete a la lista
 	* @param inter Int�rprete a a�adir

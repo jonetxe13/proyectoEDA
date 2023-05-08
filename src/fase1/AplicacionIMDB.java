@@ -45,8 +45,12 @@ public class AplicacionIMDB {
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoI().size() + " interpretes. \n");
 		
 		// esto no vaaa************
-		
-		//catalogo.imprimirCamino("Lockwood, Melinda", "McConnell, Claudia (I)");
+		try {
+		catalogo.imprimirCamino("Lockwood, Melinda", "McConnell, Claudia (I)");
+		}
+		catch (NullPointerException o) {
+			System.out.println("El Camino no se ha encontrado.");
+		}
 		// esto no vaaa************
 
 		//Men
@@ -55,12 +59,12 @@ public class AplicacionIMDB {
 		
 		while(opcion!=0) {
 
-			System.out.println(" Escoja una opcion:");
+			System.out.println("\n Escoja una opcion:");
 			System.out.println("  1. Mostrar informacion de pelicula");
 			System.out.println("  2. Mostrar informacion de interprete");
 			System.out.println("  3. Anadir voto a pelicula");
 			System.out.println("  4. Eliminar pelicula");
-			System.out.println("  0. Salir");
+			System.out.println("  0. Salir \n");
 			
 			opcion = Integer.parseInt(sc.nextLine());
 			switch(opcion) {
@@ -116,8 +120,16 @@ public class AplicacionIMDB {
 				   
 			   case 4: 
 				   System.out.println("Introduzca el titulo de una pelicula: \n");
+				   try {
 				   catalogo.eliminarPelicula(sc.nextLine());
 				   System.out.println("En el catalogo quedan " + catalogo.getCatalogoP().tamanio() + " y " + catalogo.getCatalogoI().size() + " interpretes. \n");
+				   }
+				   catch(IndexOutOfBoundsException o) {
+					   System.out.println("¡ERROR!");
+					   System.out.println("La pelicula no se encuentra en el catalogo");
+				   }
+				   break;
+			   
 			   case 0:
 				   System.out.println("Cerrando... ");
 				   break;

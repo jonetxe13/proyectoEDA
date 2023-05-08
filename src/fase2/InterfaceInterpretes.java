@@ -9,5 +9,4 @@ public interface InterfaceInterpretes {
 	public Interprete buscarInterprete(String nom);
 	public Interprete eliminarInterprete(String nom);
 	public int size();
-	public int sizeI(NodoABBInterpretes root);
 }
