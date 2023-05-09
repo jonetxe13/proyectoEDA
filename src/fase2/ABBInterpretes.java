@@ -50,10 +50,7 @@ public class ABBInterpretes implements InterfaceInterpretes {
 	* @return el Interprete (si se ha eliminado), null en caso contrario
 	*/
 	public Interprete eliminarInterprete(String nombre) {
-		if(!this.isEmpty()) {
-			 this.root.info = this.root.eliminarInterprete(nombre);
-			 return this.root.info;
-		}
+		if (root != null) root = root.delete(nombre);
 		return null;
 	}
 	

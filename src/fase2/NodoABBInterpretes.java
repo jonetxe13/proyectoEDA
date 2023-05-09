@@ -100,27 +100,54 @@ public class NodoABBInterpretes {
 	* @param nombre Nombre del int�rprete a eliminar
 	* @return el Interprete (si se ha eliminado), null en caso contrario
 	*/
-	public Interprete eliminarInterprete(String nombre){
-		int comp = nombre.compareTo(this.info.getName());
-		
-		if(comp==0) {//Caso (a): this es el nodo a eliminar
-			if(!this.hasLeft()) return this.right.info; //Caso (a1)
-			else if(!this.hasRight()) return this.left.info; //Caso (a2)
-			else {//Caso (a3): Tiene los dos subarboles, sustituir por el valor m�nimo del subarbol derecho
-				ResultadoRemoveMin min = this.right.removeMin();
-				this.right = min.elNodo;
-				this.info = min.elValor;
-				return this.info;
-			}
-		}
-		else if(comp<0){//Caso (b) El elemento a eliminar, si est�, estar� en el sub�rbol izq
-			 if(this.hasLeft()) this.left.info = this.left.eliminarInterprete(nombre);
-			 return this.info;
-			
-		}else {//comp>0: Caso (c) El elemento a eliminar, si est�, estar� en el sub�rbol dcho
-			 if (this.hasRight()) this.right.info = this.right.eliminarInterprete(nombre);
-			 return this.info;
-		}
-	}
+//	public Interprete eliminarInterprete(String nombre){
+//		int comp = nombre.compareTo(this.info.getName());
+//		
+//		if(comp==0) {//Caso (a): this es el nodo a eliminar
+//			if(!this.hasLeft()) return this.right.info; //Caso (a1)
+//			else if(!this.hasRight()) return this.left.info; //Caso (a2)
+//			else {//Caso (a3): Tiene los dos subarboles, sustituir por el valor m�nimo del subarbol derecho
+//				ResultadoRemoveMin min = this.right.removeMin();
+//				this.right = min.elNodo;
+//				this.info = min.elValor;
+//				return this.info;
+//			}
+//		}
+//		else if(comp<0){//Caso (b) El elemento a eliminar, si est�, estar� en el sub�rbol izq
+//			 if(this.hasLeft()) this.left.info = this.left.eliminarInterprete(nombre);
+//			 return this.info;
+//			
+//		}else {//comp>0: Caso (c) El elemento a eliminar, si est�, estar� en el sub�rbol dcho
+//			 if (this.hasRight()) this.right.info = this.right.eliminarInterprete(nombre);
+//			 return this.info;
+//		}
+//	}
+//
+//	    } 
+	 // In the Node class
+	    public NodoABBInterpretes delete(String name) {
+	        int comp = name.compareTo(this.info.getName());
+	        if (comp < 0) {
+	            if (this.left != null) this.left = this.left.delete(name);
+	        } else if (comp > 0) {
+	            if (this.right != null) this.right = this.right.delete(name);
+	        } else {
+	            if (this.left == null) return this.right;
+	            else if (this.right == null) return this.left;
+	            String nombre = minValue();
+	            this.info.setName(nombre);
+	            this.right = this.right.delete(this.info.getName());
+	        }
+	        return this;
+	    }
 
+	    String minValue() {
+	        String minv = this.info.getName();
+	        NodoABBInterpretes current = this;
+	        while (current.left != null) {
+	            minv = current.left.info.getName();
+	            current = current.left;
+	        }
+	        return minv;
+	    }
 }

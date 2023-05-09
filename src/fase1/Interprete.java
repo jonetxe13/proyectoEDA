@@ -21,6 +21,7 @@ public class Interprete{
 	}
 	
 	public String getName() { return this.name; }
+	public void setName(String name) { this.name = name; }
 	public float getRating() { return this.rating; }
 	public ListaPeliculas getListaPeliculas() { return this.listaPeliculas; }
 	
