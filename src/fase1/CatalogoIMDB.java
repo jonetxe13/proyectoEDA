@@ -244,17 +244,24 @@ public class CatalogoIMDB {
 		Queue<Interprete> cola = new LinkedList<Interprete>();
 		Interprete inter;
 		cola.add(catalogoInterpretes.buscarInterprete(inter1));
+		System.out.println(catalogoInterpretes.buscarInterprete(inter1));
+		System.out.println(catalogoInterpretes.buscarInterprete(inter2));
 		visitados.put(inter1, null);
 
 		boolean encontrado = false;
 
 		while (!cola.isEmpty() && !encontrado) {
 			inter = cola.remove();
-
-			if (inter.getName().equals(inter2))
+//			System.out.println(inter);
+//			System.out.println(inter.getName().equals(inter2));
+			if (inter.getName().equals(inter2)) {
+				System.out.println(inter.getName().equals(inter2));
 				encontrado = true;
+			}
 			else {
+				System.out.println("hasta aqui llega");
 				for (Interprete aux : inter.obtenerAdyacentes()) {
+					System.out.println(aux.getName());
 					if (!visitados.containsKey(aux.getName())) {
 						cola.add(aux);
 						visitados.put(aux.getName(), inter.getName());
@@ -266,10 +273,10 @@ public class CatalogoIMDB {
 			String camino = "";
 			String aux = inter2;
 			while (aux != null) {
-				camino = aux + " " + camino;
+				camino = aux + "; " + camino;
 				aux = visitados.get(aux);
 			}
-			System.out.println(camino);
+			System.out.println("{ " + camino + " }");
 		} else
 			System.out.println("No existe camino entre los interpretes");
 	}

@@ -51,7 +51,7 @@ public class ABBInterpretes implements InterfaceInterpretes {
 	*/
 	public Interprete eliminarInterprete(String nombre) {
 		if (root != null) root = root.delete(nombre);
-		return null;
+		return root.info;
 	}
 	
 	/**
