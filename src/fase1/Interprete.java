@@ -65,29 +65,6 @@ public class Interprete{
 	}
 	
 	public HashSet<Interprete> obtenerAdyacentes() { //recorrido por anchura
-//	    HashSet<Interprete> adyacentes = new HashSet<Interprete>();
-//	    Queue<Interprete> cola = new LinkedList<Interprete>();
-//	    HashSet<Interprete> visitados = new HashSet<Interprete>();
-//	    Interprete aux;
-//	    cola.add(this);
-//	    visitados.add(this);
-//	    while(!cola.isEmpty()) {
-//	        aux = cola.remove();
-////	        System.out.println("Removed from queue: " + aux.getName());
-//	        for(int i = 0; i < aux.listaPeliculas.getLista().size(); i++) {
-//	            for(int j = 0; j < aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().size(); j++) {
-//	                if(!aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j).equals(aux)) {
-////	                    System.out.println("Adding to queue: " + aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j).getName());
-//	                    adyacentes.add(aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j));
-//	                    if (!visitados.contains(aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j))) {
-//	                        cola.add(aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j));
-//	                        visitados.add(aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j));
-//	                    }
-//	                }
-//	            }
-//	        }
-//	    }
-//	    return adyacentes;
 	    HashSet<Interprete> adyacentes = new HashSet<Interprete>();
 	    for(int i = 0; i < this.listaPeliculas.getLista().size(); i++) {
 	        for(int j = 0; j < this.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().size(); j++) {
@@ -97,17 +74,5 @@ public class Interprete{
 	        }
 	    }
 	    return adyacentes;
-
-//		 Interprete nodo;
-//		 Integer i;
-//		
-//		 HashSet<Interprete> adyacentes = new HashSet<Interprete>();
-//		
-//		 for (Pelicula peli: listaPeliculas.getLista()) {
-//		 	for(Interprete inter: peli.getListaInterpretes().getlista()) {
-//		 		adyacentes.add(inter);	
-//		 	}
-//		 }
-//		 return adyacentes;
 	}
 }

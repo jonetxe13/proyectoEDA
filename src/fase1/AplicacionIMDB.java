@@ -43,20 +43,15 @@ public class AplicacionIMDB {
 		System.out.println(((endTime - startTime)/1000000) + " ms");
 		
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoI().size() + " interpretes. \n");
-		System.out.println(arbol.buscarInterprete("Sedgwick, Josie").getListaPeliculas().getPelicula(0).getTitulo());
-		System.out.println(arbol.buscarInterprete("Rogers, Jean (I)").getListaPeliculas().getPelicula(0).getTitulo());
-//		System.out.println(arbol.eliminarInterprete("Sedgwick, Josie"));
-//		System.out.println(arbol.buscarInterprete("Sedgwick, Josie"));
-		// esto no vaaa************
+//		System.out.println(arbol.buscarInterprete("Sedgwick, Josie").getListaPeliculas().getPelicula(0).getTitulo());
+//		System.out.println(arbol.buscarInterprete("Rogers, Jean (I)").getListaPeliculas().getPelicula(0).getTitulo());
 		try {
 			catalogo.imprimirCamino("Sedgwick, Josie", "Rogers, Jean (I)");
 		}
 		catch (NullPointerException o) {
 			System.out.println("El Camino no se ha encontrado.");
 		}
-		// esto no vaaa************
 
-		//Men
 		Scanner sc = new Scanner(System.in);
 		int opcion=-1;
 		
