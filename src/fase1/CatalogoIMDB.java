@@ -244,8 +244,7 @@ public class CatalogoIMDB {
 		Queue<Interprete> cola = new LinkedList<Interprete>();
 		Interprete inter;
 		cola.add(catalogoInterpretes.buscarInterprete(inter1));
-		System.out.println(catalogoInterpretes.buscarInterprete(inter1));
-		System.out.println(catalogoInterpretes.buscarInterprete(inter2));
+
 		visitados.put(inter1, null);
 
 		boolean encontrado = false;
@@ -268,10 +267,10 @@ public class CatalogoIMDB {
 			String camino = "";
 			String aux = inter2;
 			while (aux != null) {
-				camino = aux + "; " + camino;
+				camino = aux + " -> " + camino;
 				aux = visitados.get(aux);
 			}
-			System.out.println("{ " + camino + " }");
+			System.out.println("[ " + camino + " ]");
 		} else
 			System.out.println("No existe camino entre los interpretes");
 	}

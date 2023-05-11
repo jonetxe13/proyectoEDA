@@ -14,8 +14,7 @@ import fase2.NodoABBInterpretes;
 public class AplicacionIMDB {
 	
 	public static void main(String[] args) throws InstanceAlreadyExistsException{
-		CatalogoIMDB catalogo = new CatalogoIMDB();
-	    //TO DO: Cargar pelculas	
+		CatalogoIMDB catalogo = new CatalogoIMDB();	
 
 		System.out.println("¡Bienvenid@ a la aplicacion de IMDB!\n"
 				+ "Cargando peliculas...");
@@ -34,7 +33,6 @@ public class AplicacionIMDB {
 		catalogo.setInterpretes(arbol);
 		
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
-		//System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
 		System.out.println("Cargando interpretes...");
 		long startTime = System.nanoTime();
 		catalogo.cargarInterpretes(Path.of("src/data") + "/cast_tiny.txt");
@@ -43,8 +41,7 @@ public class AplicacionIMDB {
 		System.out.println(((endTime - startTime)/1000000) + " ms");
 		
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoI().size() + " interpretes. \n");
-//		System.out.println(arbol.buscarInterprete("Sedgwick, Josie").getListaPeliculas().getPelicula(0).getTitulo());
-//		System.out.println(arbol.buscarInterprete("Rogers, Jean (I)").getListaPeliculas().getPelicula(0).getTitulo());
+		
 		try {
 			catalogo.imprimirCamino("Sedgwick, Josie", "Rogers, Jean (I)");
 		}
