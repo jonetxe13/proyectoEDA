@@ -69,13 +69,15 @@ public class AplicacionIMDB {
 			   case 1:
 				    System.out.println("Introduce el titulo de la pelicula a buscar: ");
 				    
-				    try {
+				    
 				   	String titulo = sc.nextLine();
+				   	
+				   	try {
 					catalogo.imprimirInfoPelicula(titulo);
 				    }
-				    catch(IndexOutOfBoundsException o) {
+					catch (IndexOutOfBoundsException o) {
 				    	System.out.println("¡ERROR!");
-				    	System.out.println("La pelicula no se encuentra en el catalogo");
+				    	System.out.println("La pelicula '" + titulo + "' no se encuentra en el catalogo");
 				    }
 				    
 					break;
@@ -83,13 +85,15 @@ public class AplicacionIMDB {
 			   case 2:
 				   System.out.println("Introduce el nombre del interprete a buscar: ");
 				   
-				   try {
+				   
 				   String nombre = sc.nextLine();
+				   
+				   if(catalogo.getCatalogoI().buscarInterprete(nombre)!=null) {
 				   catalogo.imprimirInfoInterprete(nombre);
 				   }
-				   catch(IndexOutOfBoundsException o) {
+				   else{
 					   System.out.println("¡ERROR!");
-					   System.out.println("El interprete no se escuentra en el catalogo");
+					   System.out.println("El interprete '" + nombre + "' no se escuentra en el catalogo");
 				   }
 				   
 				   break;
@@ -97,34 +101,45 @@ public class AplicacionIMDB {
 			   case 3: 
 				  System.out.println("Introduce el titulo de la pelicula a la cual le quieras annadir el voto: \n"); 
 				  
-				  try {
+				  
 				  String peli = sc.nextLine();
+				  
+				  try {
 				   if(catalogo.getCatalogoP().buscarPelicula(peli) != null){
 				      System.out.println("Introduce el numero del voto que quieras annadir: ");
+				      
+				    try {
 				      float voto = Float.parseFloat(sc.nextLine());
 				      catalogo.anadirVoto(peli, voto);
+				      }
+				      catch (NumberFormatException o) {
+				    	  System.out.println("¡ERROR!");
+				    	  System.out.println("El voto no es valido.");
+				      }
 				   	}
 				   else{
-					   System.out.println("�ERROR!");
-					   System.out.println("La pelicula no se encuentra en el catalogo");
+					   System.out.println("¡ERROR!");
+					   System.out.println("La pelicula '" + peli + "' no se encuentra en el catalogo");
 				   }
 				  }
 				  catch(IndexOutOfBoundsException o) {
 				    	System.out.println("¡ERROR!");
-				    	System.out.println("La pelicula no se encuentra en el catalogo");
+				    	System.out.println("La pelicula '" + peli + "' no se encuentra en el catalogo");
 				    }
 				    
 				   break;
 				   
 			   case 4: 
 				   System.out.println("Introduzca el titulo de una pelicula: \n");
+				   
+				   String titu = sc.nextLine();
 				   try {
-				   catalogo.eliminarPelicula(sc.nextLine());
+				   catalogo.eliminarPelicula(titu);
 				   System.out.println("En el catalogo quedan " + catalogo.getCatalogoP().tamanio() + " y " + catalogo.getCatalogoI().size() + " interpretes. \n");
 				   }
 				   catch(IndexOutOfBoundsException o) {
 					   System.out.println("¡ERROR!");
-					   System.out.println("La pelicula no se encuentra en el catalogo");
+					   System.out.println("La pelicula '" + titu + "' no se encuentra en el catalogo");
 				   }
 				   break;
 			   

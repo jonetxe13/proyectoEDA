@@ -116,8 +116,8 @@ public class CatalogoIMDB {
 			}
 			System.out.println(resultado);
 		} else {
-			System.out.println("�ERROR!");
-			System.out.println("La pelicula " + titulo + " no se encuentra.");
+			System.out.println("¡ERROR!");
+			System.out.println("La pelicula " + titulo + " no se encuentra en el catalogo.");
 		}
 	}
 
@@ -156,7 +156,7 @@ public class CatalogoIMDB {
 			System.out.println(
 					"El nuevo rating de la pelicula es: " + catalogoPeliculas.buscarPelicula(titulo).getRating());
 		} else {
-			System.out.println("�ERROR!");
+			System.out.println("¡ERROR!");
 			System.out.println("El voto no es valido.");
 		}
 	}
