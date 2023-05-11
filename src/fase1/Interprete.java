@@ -21,6 +21,7 @@ public class Interprete{
 	}
 	
 	public String getName() { return this.name; }
+	public void setName(String name) { this.name = name; }
 	public float getRating() { return this.rating; }
 	public ListaPeliculas getListaPeliculas() { return this.listaPeliculas; }
 	
@@ -64,33 +65,49 @@ public class Interprete{
 	}
 	
 	public HashSet<Interprete> obtenerAdyacentes() { //recorrido por anchura
-		HashSet<Interprete> adyacentes = new HashSet<Interprete>();
-		Queue<Interprete> cola = new LinkedList<Interprete>();
-		Interprete aux;
-		cola.add(this);
-		while(!cola.isEmpty()) {
-			aux = cola.remove();
-			for(int i = 0; i < aux.listaPeliculas.getLista().size(); i++) {
-				for(int j = 0; j < aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().size(); j++) {
-					if(!aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j).equals(aux)) {
-						adyacentes.add(aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j));
-						cola.add(aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j));
-					}
-				}
-			}
-		}
-		return adyacentes;
+//	    HashSet<Interprete> adyacentes = new HashSet<Interprete>();
+//	    Queue<Interprete> cola = new LinkedList<Interprete>();
+//	    HashSet<Interprete> visitados = new HashSet<Interprete>();
+//	    Interprete aux;
+//	    cola.add(this);
+//	    visitados.add(this);
+//	    while(!cola.isEmpty()) {
+//	        aux = cola.remove();
+////	        System.out.println("Removed from queue: " + aux.getName());
+//	        for(int i = 0; i < aux.listaPeliculas.getLista().size(); i++) {
+//	            for(int j = 0; j < aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().size(); j++) {
+//	                if(!aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j).equals(aux)) {
+////	                    System.out.println("Adding to queue: " + aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j).getName());
+//	                    adyacentes.add(aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j));
+//	                    if (!visitados.contains(aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j))) {
+//	                        cola.add(aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j));
+//	                        visitados.add(aux.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j));
+//	                    }
+//	                }
+//	            }
+//	        }
+//	    }
+//	    return adyacentes;
+	    HashSet<Interprete> adyacentes = new HashSet<Interprete>();
+	    for(int i = 0; i < this.listaPeliculas.getLista().size(); i++) {
+	        for(int j = 0; j < this.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().size(); j++) {
+	            if(!this.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j).equals(this)) {
+	                adyacentes.add(this.listaPeliculas.getLista().get(i).getListaInterpretes().getlista().get(j));
+	            }
+	        }
+	    }
+	    return adyacentes;
 
-		// Interprete nodo;
-		// Integer i;
-		
-		// HashSet<Interprete> adyacentes = new HashSet<Interprete>();
-		
-		// for (Pelicula peli: listaPeliculas.getLista()) {
-		// 	for(Interprete inter: peli.getListaInterpretes().getlista()) {
-		// 		adyacentes.add(inter);	
-		// 	}
-		// }
-		// return adyacentes;
+//		 Interprete nodo;
+//		 Integer i;
+//		
+//		 HashSet<Interprete> adyacentes = new HashSet<Interprete>();
+//		
+//		 for (Pelicula peli: listaPeliculas.getLista()) {
+//		 	for(Interprete inter: peli.getListaInterpretes().getlista()) {
+//		 		adyacentes.add(inter);	
+//		 	}
+//		 }
+//		 return adyacentes;
 	}
 }
