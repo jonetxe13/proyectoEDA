@@ -98,4 +98,56 @@ public class ABBInterpretes implements InterfaceInterpretes {
 		else 
 		return this.root.buscarInterprete(nombre);
 	}
+	
+	
+	
+	
+//	public void eliminarNodo(String nombre) {
+//	    root = eliminarNodoAux(root, nombre);
+//	}
+//
+//	
+//	
+//	private NodoABBInterpretes eliminarNodoAux(NodoABBInterpretes nodo, String nombre) {
+//	    // Caso base: si el nodo es nulo, no hay nada que eliminar
+//	    if (nodo == null) {
+//	        return null;
+//	    }
+//	    
+//	    
+//	    // Si el nombre buscado es menor que el del nodo actual, busca en el subárbol izquierdo
+//	    if (nombre.compareTo(nodo.info.getName()) < 0) {
+//	        nodo.left = eliminarNodoAux(nodo.left, nombre);
+//	    }
+//	    // Si el nombre buscado es mayor que el del nodo actual, busca en el subárbol derecho
+//	    else if (nombre.compareTo(nodo.info.getName()) > 0) {
+//	        nodo.right = eliminarNodoAux(nodo.right, nombre);
+//	    }
+//	    // Si el nombre buscado es igual al del nodo actual, elimina el nodo y reorganiza el árbol
+//	    else {
+//	        // Si el nodo tiene al menos un hijo, reemplázalo por el nodo que tenga
+//	        if (nodo.left == null) {
+//	            return nodo.right;
+//	        } else if (nodo.right == null) {
+//	            return nodo.left;
+//	        }
+//	        
+//	        // Si el nodo tiene dos hijos, busca el sucesor en orden y reemplázalo
+//	        NodoABBInterpretes sucesor = buscarSucesor(nodo.right);
+//	        nodo.info = sucesor.info;
+//	        nodo.right = eliminarNodoAux(nodo.right, sucesor.info.getName());
+//	    }
+//	    
+//	    return nodo;
+//	}
+//
+//	private NodoABBInterpretes buscarSucesor(NodoABBInterpretes nodo) {
+//		
+//	    NodoABBInterpretes actual = nodo;
+//	    while (actual.left != null) {
+//	        actual = actual.left;
+//	    }
+//	    return actual;
+//	}	
 }
+

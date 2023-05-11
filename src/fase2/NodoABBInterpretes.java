@@ -32,6 +32,7 @@ public class NodoABBInterpretes {
 	public boolean hasRight() {
 		return null != this.right;
 	}
+	
 	/**
 	* Busca un int�rprete en la lista y lo devuelve
 	* @param nombre Nombre del int�rprete a buscar
@@ -101,6 +102,7 @@ public class NodoABBInterpretes {
 	* @return el Interprete (si se ha eliminado), null en caso contrario
 	*/
 	public Interprete eliminarInterprete(String nombre){
+		
 		int comp = nombre.compareTo(this.info.getName());
 		
 		if(comp==0) {//Caso (a): this es el nodo a eliminar
@@ -122,5 +124,9 @@ public class NodoABBInterpretes {
 			 return this.info;
 		}
 	}
+	
+	
+	
+		
 
 }

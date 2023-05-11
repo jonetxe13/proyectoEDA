@@ -26,7 +26,7 @@ public class HashMapInterpretes extends HashMap{
 			} else
 				System.out.println(i + ": null");
 		}
-		System.out.println("N� de elementos de la tabla: " + size);
+		System.out.println("Nº de elementos de la tabla: " + size);
 	}
 
 //	public V remove(K clave) {

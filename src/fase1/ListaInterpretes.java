@@ -60,7 +60,4 @@ public class ListaInterpretes implements InterfaceInterpretes{
 		return lista.size();
 	}
 	
-	public int sizeI(NodoABBInterpretes root) {
-		return 0;
-	}
 }

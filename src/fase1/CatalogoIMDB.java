@@ -250,6 +250,7 @@ public class CatalogoIMDB {
 
 		while (!cola.isEmpty() && !encontrado) {
 			inter = cola.remove();
+			System.out.println(inter);
 
 			if (inter.getName().equals(inter2))
 				encontrado = true;
@@ -273,7 +274,11 @@ public class CatalogoIMDB {
 		} else
 			System.out.println("No existe camino entre los interpretes");
 	}
+	
+	
 
+	
+	
 	// 	HashSet<String> visitados = new HashSet<String>();
 
 	// 	Queue<Interprete> cola = new LinkedList<Interprete>();
