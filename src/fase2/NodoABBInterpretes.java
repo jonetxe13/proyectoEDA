@@ -38,9 +38,7 @@ public class NodoABBInterpretes {
 	* @return el Interprete (si est� en la lista), null en caso contrario
 	*/
 	public Interprete buscarInterprete(String nombre) {
-//		System.out.println(nombre.compareTo(this.info.getName()));
-//		System.out.println(this.hasLeft());
-//		System.out.println(this.hasRight());
+
 		if (nombre.compareTo(this.info.getName()) == 0)
 			return this.info;
 		
@@ -63,7 +61,7 @@ public class NodoABBInterpretes {
 	* @param inter Int�rprete a a�adir
 	*/
 	public void annadirInterprete(Interprete inter) {
-//		System.out.println(inter.compareTo(this.info));
+
 		if (inter.compareTo(this.info)<0) { //elem debe ir antes que el actual
 			 if (this.hasLeft()) this.left.annadirInterprete(inter);
 			 
@@ -94,36 +92,7 @@ public class NodoABBInterpretes {
 		 return resul;
 	}
 	
-	/**
-	* Elimina un int�rprete del �rbol (puede seguir estando en las listas de
-	* int�rpretes de las pel�culas)
-	* @param nombre Nombre del int�rprete a eliminar
-	* @return el Interprete (si se ha eliminado), null en caso contrario
-	*/
-//	public Interprete eliminarInterprete(String nombre){
-//		int comp = nombre.compareTo(this.info.getName());
-//		
-//		if(comp==0) {//Caso (a): this es el nodo a eliminar
-//			if(!this.hasLeft()) return this.right.info; //Caso (a1)
-//			else if(!this.hasRight()) return this.left.info; //Caso (a2)
-//			else {//Caso (a3): Tiene los dos subarboles, sustituir por el valor m�nimo del subarbol derecho
-//				ResultadoRemoveMin min = this.right.removeMin();
-//				this.right = min.elNodo;
-//				this.info = min.elValor;
-//				return this.info;
-//			}
-//		}
-//		else if(comp<0){//Caso (b) El elemento a eliminar, si est�, estar� en el sub�rbol izq
-//			 if(this.hasLeft()) this.left.info = this.left.eliminarInterprete(nombre);
-//			 return this.info;
-//			
-//		}else {//comp>0: Caso (c) El elemento a eliminar, si est�, estar� en el sub�rbol dcho
-//			 if (this.hasRight()) this.right.info = this.right.eliminarInterprete(nombre);
-//			 return this.info;
-//		}
-//	}
-//
-//	    } 
+
 	 // In the Node class
 	    public NodoABBInterpretes delete(String name) {
 	        int comp = name.compareTo(this.info.getName());
