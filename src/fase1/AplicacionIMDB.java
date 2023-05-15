@@ -1,14 +1,13 @@
 package fase1;
 
 
-import java.awt.event.InputEvent;
-import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 import javax.management.InstanceAlreadyExistsException;
 
 import fase2.ABBInterpretes;
-import fase2.NodoABBInterpretes;
+//import fase2.NodoABBInterpretes;
 
 
 public class AplicacionIMDB {
@@ -24,7 +23,7 @@ public class AplicacionIMDB {
 
 		long inicio = System.nanoTime();
 
-		catalogo.cargarPeliculas(Path.of("src/data") + "/films_tiny.txt");
+		catalogo.cargarPeliculas(Paths.get("src/data") + "/films_tiny.txt");
 
 		long terminar = System.nanoTime();
 		System.out.println(((terminar - inicio)/1000000) + " ms");
@@ -37,19 +36,18 @@ public class AplicacionIMDB {
 		//System.out.println("En el catalogo hay " + catalogo.getCatalogoP().tamanio() + " peliculas.");
 		System.out.println("Cargando interpretes...");
 		long startTime = System.nanoTime();
-		catalogo.cargarInterpretes(Path.of("src/data") + "/cast_tiny.txt");
+		catalogo.cargarInterpretes(Paths.get("src/data") + "/cast_tiny.txt");
 
 		long endTime = System.nanoTime();
 		System.out.println(((endTime - startTime)/1000000) + " ms");
 		
 		System.out.println("En el catalogo hay " + catalogo.getCatalogoI().size() + " interpretes. \n");
-//		System.out.println(arbol.buscarInterprete("Sedgwick, Josie").getListaPeliculas().getPelicula(0).getTitulo());
-//		System.out.println(arbol.buscarInterprete("Rogers, Jean (I)").getListaPeliculas().getPelicula(0).getTitulo());
 		try {
-			catalogo.imprimirCamino("Sedgwick, Josie", "Rogers, Jean (I)");
+//			catalogo.imprimirCamino("Sedgwick, Josie", "Rogers, Jean (I)");
+			System.out.println(catalogo.distancia("Sedgwick, Josie", "Rogers, Jean (I)"));
 		}
 		catch (NullPointerException o) {
-			System.out.println("El Camino no se ha encontrado.");
+			System.out.println("La distancia no va");
 		}
 
 		Scanner sc = new Scanner(System.in);
@@ -62,6 +60,8 @@ public class AplicacionIMDB {
 			System.out.println("  2. Mostrar informacion de interprete");
 			System.out.println("  3. Anadir voto a pelicula");
 			System.out.println("  4. Eliminar pelicula");
+			System.out.println("  5. Distancia entre dos interpretes");
+			System.out.println("  6. Camino entre dos interpretes");
 			System.out.println("  0. Salir \n");
 			
 			opcion = Integer.parseInt(sc.nextLine());
@@ -119,12 +119,39 @@ public class AplicacionIMDB {
 			   case 4: 
 				   System.out.println("Introduzca el titulo de una pelicula: \n");
 				   try {
-				   catalogo.eliminarPelicula(sc.nextLine());
-				   System.out.println("En el catalogo quedan " + catalogo.getCatalogoP().tamanio() + " y " + catalogo.getCatalogoI().size() + " interpretes. \n");
+					   catalogo.eliminarPelicula(sc.nextLine());
+					   System.out.println("En el catalogo quedan " + catalogo.getCatalogoP().tamanio() + " y " + catalogo.getCatalogoI().size() + " interpretes. \n");
 				   }
 				   catch(IndexOutOfBoundsException o) {
 					   System.out.println("¡ERROR!");
 					   System.out.println("La pelicula no se encuentra en el catalogo");
+				   }
+				   break;
+				   
+			   case 5: 
+				   System.out.println("Introduzca dos interpretes: \n");
+				   try {
+					   String inter1 = sc.nextLine();
+					   String inter2 = sc.nextLine();
+					   System.out.println(catalogo.distancia(inter1, inter2));
+					   
+				   }
+				   catch(IndexOutOfBoundsException o) {
+					   System.out.println("¡ERROR!");
+					   System.out.println("Los interpretes no se encuentran en el catalogo.");
+				   }
+				   break;
+				   
+			   case 6: 
+				   System.out.println("Introduzca dos interpretes: \n");
+				   try {
+					   String inter1 = sc.nextLine();
+					   String inter2 = sc.nextLine();
+					   catalogo.imprimirCamino(inter1, inter2);
+				   }
+				   catch(IndexOutOfBoundsException o) {
+					   System.out.println("¡ERROR!");
+					   System.out.println("Los interpretes no se encuentran en el catalogo.");
 				   }
 				   break;
 			   
